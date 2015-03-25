@@ -1,0 +1,7 @@
+#inlude <iostream>
+
+
+int main(int argc, char* argv[])
+{
+  std::cout<<"Witaj w twoim pierwszym programie w ros";
+}
