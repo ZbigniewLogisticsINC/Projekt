@@ -1,0 +1,37 @@
+Do zainicjowania gita służy skrypt znajdujący się w katalogu 
+prj/script/init_zbigniew_logistics_repo.sh. Po jego uruchomieniu 
+obsługa gita zależy od przyjętej konwencji w zespole. Zobaczymy jak to będzie
+wychodzić, na początek będziemy używać tylko prostych komend:
+
+* do sprawdzenia, które pliki są w poczekalni, które nie zostały do niej dodane,
+     które pliki został← zmodyfikowane itp służy git status
+* do pobrania plików z repozytorium służy git pull
+* do dodania plików do poczekalni służy git add lista_plikow
+* do zatwierdzenia plików znajdujących się w poczekalni służy 
+     		   git commit -a -m "krótki opis wprowadzonych zmian"
+* do wrzucenia plików na serwer sluży git push origin master 
+
+
+
+Przykład:
+
+Załóżmy że do naszego repozytorium dodaliśmy plik text.txt i chcemy go 
+wrzucić na serwer. Postępujemy następująco:
+
+1. Dodajemy do poczekalni:
+  
+   git add text.txt
+
+2.Commitujemy:
+	git commit -a -m "Dodano plik text.txt"
+
+3. Wysyłamy na serwer:
+   git push origin master
+
+
+Uwagi:
+* jak coś wysyłacie na serwer to sprawdźcie czy wszystko faktycznie jest
+* wrzucajcie tylko tak, żeby wszystko się mogło kompilować
+
+
+Powodzenia ;)

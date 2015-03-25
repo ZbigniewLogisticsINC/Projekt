@@ -1,0 +1,41 @@
+Kamienie Milowe
+
+
+uruchomienie pierwszej wersji programu
+	Stworzenie zalążka dokumentacji	2015-03-26
+	Stworzenie workpace'a
+	Stworzenie zalążka dyspozytora
+	Stworznie podstawowych struktur  	
+	symulacja działania robota	 
+	uruchomienie jednego fizycznego robota
+	Stworzenie zalążka strony internetowej 2015-04-16
+	
+stworzenie algorytmu wyznaczania trasy
+	uruchomienie symulacji dowolnej ilości robotów	
+	stworzenie algorytmu dobierającego robota do zadania na podstawie odległości od miejsca docelowego
+	stworzenie algorytmu optymalizującego trasę robota
+	stworzenie algorytmu optymalizującego sumaryczną trasę robotów	
+	stworzenie algorytmu powrotu i kalibracji
+	symulacja działania powyższych     2015-04-30
+		
+stworzenie algorytmu unikania kolizji
+	stworznie podstawowej wersji alg wymijania zakłądającego wzajemne przepuszczanie się robotów  2015-05-07
+	stworzenie algorytmu wymijania bazującego na aktualnej pozycji oraz odczytu z sonarów
+	symulacja powyższych 2015-05-14
+
+Uruchomienie programu na robotach
+	testowanie i debugowanie
+	stworznie wersji końcowej interfejsu użytkownika 2015-05-28
+
+Zakończenie projektu z oddaniem 2015-06-03
+
+
+1Przechowujemy wszystko we współrzędnych
+2brak przeszkód - ew. robudować
+3 zadania wczytywane z pliku + mod z poziomu app
+4.Struktura robot
+	współrzędne, współrzędneGarażu, czyWykonujeZad, bateria
+5.Struktura mapa
+	współrzędne [przeszkód], robotów i paczek
+6.Struktura zadanie w formie vektora
+	czas rozpoczęcia, miejsce, preferencjaRobota

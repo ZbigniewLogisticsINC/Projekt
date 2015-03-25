@@ -1,0 +1,16 @@
+Najpierw należy uruchomić skrypt do pobierania repozytorium. Po pobraniu
+repozytorium przechodzimy do katalogu /prj/script i uruchamiamy skrypt 
+inicjujący catkina. Następnie wpisujemy w konsolę:
+
+source devel/setup.bash
+
+i gotowe.
+
+UWAGA! 
+
+Aby uruchomić skrypt najpierw należy nadać mu uprawnienia:
+
+chmod u+x skrypt.sh
+
+Po tej komendzie można uruchomić skrypt:
+./skrypt.sh
