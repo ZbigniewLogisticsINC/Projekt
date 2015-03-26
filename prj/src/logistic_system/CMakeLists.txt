@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.11)
+cmake_minimum_required(VERSION 2.8.3)
 project(logistic_system)
 
 
@@ -14,7 +14,12 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
 )
 
-find_package(Qt5 COMPONENTS Widgets Core REQUIRED)
+find_package(Qt4 REQUIRED)
+include(${QT_USE_FILE})
+add_definitions(${QT_DEFINITIONS})
+add_definitions(${Qt5Widgets_DEFINITIONS})
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
+
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -104,13 +109,13 @@ file(GLOB FORMS ui/*.ui)
 set( QOBJECT_HEADERS  include/logistic_system/gui/LogisticSystemMainWindow.hpp)
 
 
-qt5_wrap_cpp(robot_manager_HEADERS_MOC ${QOBJECT_HEADERS} )
-qt5_wrap_ui(robot_manager_FORMS_HEADERS ${FORMS} )
+qt4_wrap_cpp(robot_manager_HEADERS_MOC ${QOBJECT_HEADERS} )
+qt4_wrap_ui(robot_manager_FORMS_HEADERS ${FORMS} )
 
 
 add_executable(robot_manager src/robot_manager_main.cpp 
   ${robot_manager_HEADERS_MOC} ${robot_manager_FORMS_HEADERS} )
-target_link_libraries(robot_manager Qt5::Widgets Qt5::Core)
+target_link_libraries(robot_manager ${QT_LIBRARIES})
 
 
 ## Add cmake target dependencies of the executable/library
