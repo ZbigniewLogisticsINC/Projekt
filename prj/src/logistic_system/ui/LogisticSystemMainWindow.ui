@@ -29,73 +29,7 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QGroupBox" name="groupBox">
-          <property name="title">
-           <string>All Robots</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_3">
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout">
-             <item>
-              <widget class="QLabel" name="label_2">
-               <property name="text">
-                <string>Total Robots:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label">
-               <property name="text">
-                <string>0</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QTableView" name="tableView"/>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_2">
-          <property name="title">
-           <string>Robot Info</string>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_3">
-           <item>
-            <widget class="QTabWidget" name="Position">
-             <property name="currentIndex">
-              <number>1</number>
-             </property>
-             <widget class="QWidget" name="tab">
-              <attribute name="title">
-               <string>Position</string>
-              </attribute>
-             </widget>
-             <widget class="QWidget" name="tab_2">
-              <attribute name="title">
-               <string>Velocity</string>
-              </attribute>
-             </widget>
-            </widget>
-           </item>
-          </layout>
-         </widget>
+         <widget class="RobotInfoWidget" name="widget_2" native="true"/>
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -127,6 +61,11 @@
        <attribute name="title">
         <string>Tasks</string>
        </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="TaskInfoWidget" name="widget" native="true"/>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="tabStorages">
        <attribute name="title">
@@ -173,6 +112,20 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>RobotInfoWidget</class>
+   <extends>QWidget</extends>
+   <header>RobotInfoWidget.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TaskInfoWidget</class>
+   <extends>QWidget</extends>
+   <header>TaskInfoWidget.hpp</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>
