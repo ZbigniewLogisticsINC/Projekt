@@ -91,7 +91,7 @@
      <item>
       <widget class="QLabel" name="label_8">
        <property name="text">
-        <string>KonradBelka</string>
+        <string>Konrad Belka</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>

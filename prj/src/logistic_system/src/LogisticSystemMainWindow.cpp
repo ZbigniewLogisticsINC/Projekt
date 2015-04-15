@@ -7,18 +7,30 @@
 
 #include "LogisticSystemMainWindow.hpp"
 #include "AboutRobotManagerDialog.hpp"
-
+#include <QMessageBox>
+#include <QCloseEvent>
 
 LogisticSystemMainWindow::LogisticSystemMainWindow(QWidget* parent)
 		: QMainWindow(parent)
 {
-	m_ui.setupUi(this);
 	init();
 }
 
 void LogisticSystemMainWindow::init()
 {
-	connect(m_ui.actionAbout,SIGNAL(triggered()),this,SLOT(showAboutWndDialog()));
+	m_ui.setupUi(this);
+	connect(m_ui.actionAbout, SIGNAL(triggered()), this,
+			SLOT(showAboutWndDialog()));
+}
+
+void LogisticSystemMainWindow::closeEvent(QCloseEvent* closeEvent)
+{
+	QMessageBox::StandardButtons chosenButton = QMessageBox::question(this,
+			tr("Closing application"), tr("Do you really want to quit application"),
+			QMessageBox::Yes | QMessageBox::No);
+
+	if (chosenButton == QMessageBox::No)
+		closeEvent->ignore();
 }
 
 void LogisticSystemMainWindow::showAboutWndDialog()

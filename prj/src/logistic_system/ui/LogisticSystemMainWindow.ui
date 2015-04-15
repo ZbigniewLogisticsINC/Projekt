@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="movable">
        <bool>true</bool>
@@ -71,6 +71,21 @@
        <attribute name="title">
         <string>Storage</string>
        </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="StorageInfoWidget" name="widget_4" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Map</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="MapWidget" name="widget_3" native="true"/>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -123,6 +138,18 @@
    <class>TaskInfoWidget</class>
    <extends>QWidget</extends>
    <header>TaskInfoWidget.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MapWidget</class>
+   <extends>QWidget</extends>
+   <header>MapWidget.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>StorageInfoWidget</class>
+   <extends>QWidget</extends>
+   <header>StorageInfoWidget.hpp</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

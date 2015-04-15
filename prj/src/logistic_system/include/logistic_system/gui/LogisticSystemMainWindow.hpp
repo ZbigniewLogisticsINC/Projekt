@@ -10,6 +10,9 @@ class LogisticSystemMainWindow: public QMainWindow
 
 	public:
 		LogisticSystemMainWindow(QWidget* parent = nullptr);
+	protected:
+		void closeEvent(QCloseEvent* closeEvent) override;
+
 	private:
 		Ui::UiLogisticSystemMainWindow m_ui;
 		void init();

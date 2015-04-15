@@ -27,4 +27,4 @@ class AddTaskDialog: public QDialog
 
 };
 
-#endif /* PRJ_SRC_LOGISTIC_SYSTEM_INCLUDE_LOGISTIC_SYSTEM_GUI_ADDTASKDIALOG_HPP_ */
+#endif /* ADDTASKDIALOG_HPP_ */
