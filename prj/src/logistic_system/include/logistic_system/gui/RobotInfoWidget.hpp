@@ -19,11 +19,14 @@ class RobotInfoWidget: public QWidget
 		RobotInfoWidget(QWidget* parent = nullptr)
 				: QWidget(parent)
 		{
-			m_ui.setupUi(this);
+		  init();
 		}
 
 	private:
 		Ui::UiRobotInfoWidget m_ui;
+  void init();
+private slots:
+  void showAddDialog();
 };
 
 #endif /* ROBOTINFOWIDGET_HPP_ */

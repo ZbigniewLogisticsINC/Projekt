@@ -21,6 +21,7 @@ void LogisticSystemMainWindow::init()
 	m_ui.setupUi(this);
 	connect(m_ui.actionAbout, SIGNAL(triggered()), this,
 			SLOT(showAboutWndDialog()));
+	
 }
 
 void LogisticSystemMainWindow::closeEvent(QCloseEvent* closeEvent)
