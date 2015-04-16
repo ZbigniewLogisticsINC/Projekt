@@ -19,7 +19,7 @@ class MapWidget: public QWidget
 		}
 
 	protected:
-		void paintEvent(QPaintEvent* paintEvent) override;
+		void paintEvent(QPaintEvent* paintEvent);
 };
 
 #endif /* PRJ_SRC_LOGISTIC_SYSTEM_INCLUDE_LOGISTIC_SYSTEM_GUI_MAPWIDGET_HPP_ */
