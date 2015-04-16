@@ -6,7 +6,7 @@
  */
 
 #include "StorageInfoWidget.hpp"
-
+#include "TasksModel.hpp"
 
 void StorageInfoWidget::init()
 {

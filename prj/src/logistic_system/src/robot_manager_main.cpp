@@ -2,6 +2,8 @@
 #include <QMessageBox>
 #include <QApplication>
 #include "LogisticSystemMainWindow.hpp"
+#include <ros/ros.h>
+
 
 
 int main(int argc, char* argv[])

@@ -28,14 +28,14 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
 
 catkin_package()
 
-include_directories(include include/logistic_system/gui)
+include_directories(include include/logistic_system/gui include/logistic_system/models)
 include_directories(
   ${catkin_INCLUDE_DIRS} 
 )
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 file(GLOB FORMS ui/*.ui)
-file(GLOB QOBJECT_HEADERS  include/logistic_system/gui/*.hpp)
+file(GLOB QOBJECT_HEADERS  include/logistic_system/gui/*.hpp include/logistic_system/models/*Model.hpp)
 file(GLOB_RECURSE SRCS src/*.cpp)
 file(GLOB RSRCS rsrc/*.qrc)
 
