@@ -1,8 +1,8 @@
 /*
- *   zadanie.cpp 
+ *  zadanie.cpp 
  *
- *   Created on : Apr 19, 2015
- *       Author : doziom2
+ *  Created on : Apr 19, 2015
+ *      Author : doziom2
  *
  */
 
