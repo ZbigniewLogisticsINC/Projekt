@@ -22,11 +22,11 @@ istream & operator >> ( istream & StrmWe, Robot & R)
  double zm1;
  int zm2;
     StrmWe >> zm1;
-    if(StrmWe.fail()) return StrmWe;  R.ZmienWspX(&zm1);
+    if(StrmWe.fail()) return StrmWe;  R.ZmienWspX(zm1);
     StrmWe >> zm1;
-    if(StrmWe.fail()) return StrmWe;  R.ZmienWspY(&zm1);
+    if(StrmWe.fail()) return StrmWe;  R.ZmienWspY(zm1);
     StrmWe >> zm2;
-    if(StrmWe.fail()) return StrmWe;  R.ZmienRobotId(&zm2);
+    if(StrmWe.fail()) return StrmWe;  R.ZmienRobotId(zm2);
  
   return StrmWe;
 }

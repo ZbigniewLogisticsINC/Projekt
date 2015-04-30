@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "ui_AddRobotDialog.h"
 #include "RobotManagerDataObject.hpp"
+#include "DataManager.hpp"
 
 class AddRobotDialog: public QDialog, public DataManager
 {

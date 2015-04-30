@@ -10,6 +10,7 @@
 
 #include <QWidget>
 #include "ui_RobotInfoWidget.h"
+#include "DataManager.hpp"
 
 class RobotInfoWidget: public QWidget, public DataManager
 {

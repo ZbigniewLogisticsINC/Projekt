@@ -14,11 +14,12 @@
 #include "magazyn.hpp"
 #include "garaz.hpp"
 #include <list>
-
+#include <QTimer>
 class RobotManagerData: public QObject
 {
     Q_OBJECT
 public:
+	RobotManagerData(QObject* parent = nullptr);
     bool addRobot(const Robot& robot);
     bool addStore(const Magazyn& magazyn);
     bool addGarage(const Garaz& garaz);
@@ -28,7 +29,9 @@ public:
     bool containsStoreId(unsigned int id) const;
     bool containsGarageId(unsigned int id) const;
     bool containsRobotId(unsigned int id) const;
-    void update() { /* tu pobiera dane od rosa */ emit dataUpdated(); }
+    const std::list<Zadanie> tasksList() const { return m_taskList; }
+public slots:
+    void update() { static int i=1;Robot r;r.ZmienRobotId(i);addRobot(r); emit dataUpdated(); }
 signals:
   void dataUpdated();
 private:

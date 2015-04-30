@@ -18,6 +18,7 @@ void TaskInfoWidget::init()
 void TaskInfoWidget::showAddTaskDialog()
 {
 	AddTaskDialog addDialog(this);
+	addDialog.setRobotManagerData(m_managerDataObject->getRobotManagerData());
 	addDialog.exec();
 }
 

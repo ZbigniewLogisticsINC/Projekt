@@ -10,7 +10,7 @@
 
 #include <QWidget>
 #include "ui_StorageInfoWidget.h"
-
+#include "DataManager.hpp"
 
 class StorageInfoWidget: public QWidget, public DataManager
 {

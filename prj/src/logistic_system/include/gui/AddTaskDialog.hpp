@@ -10,6 +10,7 @@
 
 #include <QDialog>
 #include "ui_AddTaskDialog.h"
+#include "DataManager.hpp"
 
 class AddTaskDialog: public QDialog, public DataManager
 {

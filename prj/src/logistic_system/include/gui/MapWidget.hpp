@@ -9,6 +9,7 @@
 #define MAPWIDGET_HPP_
 
 #include <QWidget>
+#include "DataManager.hpp"
 
 class MapWidget: public QWidget, public DataManager
 {

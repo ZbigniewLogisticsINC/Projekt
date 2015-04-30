@@ -43,5 +43,3 @@ void LogisticSystemMainWindow::showAboutWndDialog()
   AboutRobotManagerDialog dialog(this);
   dialog.exec();
 }
-
-

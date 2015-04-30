@@ -17,13 +17,12 @@ class RobotManagerDataObject:public QObject
 
   public:
     void setRobotManagerData(RobotManagerData* managerData );
+    RobotManagerData* getRobotManagerData() { return m_managerData; }
     void update() { /*todo do zrobienia*/ }
   signals:
     void dataUpdated();
   protected:
     RobotManagerData* m_managerData;
 };
-
-
 
 #endif /* ROBOTMANAGERDATAOBJECT_HPP_ */

@@ -13,4 +13,3 @@ void RobotManagerDataObject::setRobotManagerData(RobotManagerData* managerData)
 
   emit dataUpdated();
 }
-

@@ -88,8 +88,8 @@ public :
  * \param      x  -  staly wskaznik typu double do argumentu wsp_x
  *
  */
-  void ZmienWspX(const double* x)
-  { wsp_x = *x;}
+  void ZmienWspX(const double& x)
+  { wsp_x = x;}
 
 /*! 
  * \brief zmienia wartosc pola wsp_y struktury Robot.
@@ -97,8 +97,8 @@ public :
  * \param      y  -  staly wskaznik typu double do argumentu wsp_y
  *
  */
-  void ZmienWspY(const double* y)
-  { wsp_y = *y;}
+  void ZmienWspY(const double& y)
+  { wsp_y = y;}
 
 /*! 
  * \brief zmienia wartosc pola czy_wolny struktury Robot.
@@ -106,8 +106,8 @@ public :
  * \param      wsp  -  staly wskaznik typu bool do argumentu czy_wolny 
  *
  */
-  void ZmienCzyWolny(const bool* wsp)
-  { czy_wolny = *wsp;}
+  void ZmienCzyWolny(const bool wsp)
+  { czy_wolny = wsp;}
 
 /*! 
  * \brief zmienia wartosc pola id struktury Robot.
@@ -115,8 +115,8 @@ public :
  * \param      b  -  staly wskaznik typu int do argumentu id
  *
  */
-  void ZmienRobotId(const int* Id)
-  { id = *Id;}
+  void ZmienRobotId(const int& Id)
+  { id = Id;}
 
 };
 
