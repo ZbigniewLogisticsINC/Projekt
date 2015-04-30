@@ -13,3 +13,8 @@ void AddRobotDialog::init()
 {
   m_ui.setupUi(this);
 }
+
+void AddRobotDialog::refreshDataViewed()
+{
+
+}

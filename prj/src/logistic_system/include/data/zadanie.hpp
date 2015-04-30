@@ -33,25 +33,33 @@ using namespace std;
  * start_magazyn_id, cel_magazyn_id, pref_robot.
  */
 class Zadanie {
-public:
-  int start_magazyn_id; /*! zmienna typu int okreslajaca poczatkowy magazyn sciezki zadania */
-  int cel_magazyn_id; /*! zmienna typu int okreslajaca koncowy magazyn sciezki zadania */
-  int pref_robot; /*! zmienna typu int okreslajaca preferowanego robota do wykonania zadania */
-/*! 
- * \brief Przeciazenie operatora indeksujacego dla struktury Zadanie.
- *
- * Umozliwia wywolanie wspolrzednych struktury Zadanie poprzez operator indeksujacy.
- */
-  int operator [] (int dana) const { return dana == 0 ? start_magazyn_id : dana == 1 ? cel_magazyn_id : pref_robot; }
+  public:
+    enum TypDanych{ START_MAGAZYN_ID,CEL_MAGAZYN_ID,PREF_ROBOT};
+    /*!
+     * \brief Przeciazenie operatora indeksujacego dla struktury Zadanie.
+     *
+     * Umozliwia wywolanie wspolrzednych struktury Zadanie poprzez operator indeksujacy.
+     */
+    int operator [] (TypDanych dana) const { return dana == START_MAGAZYN_ID ? start_magazyn_id : dana == CEL_MAGAZYN_ID ? cel_magazyn_id : pref_robot; }
 
-/*! 
- * \brief Przeciazenie operatora indeksujacego dla struktury Zadanie.
- *
- * Przeciazenie pozwalajace na prace na zwroconych argumentach struktury Zadanie.
- */
-  int & operator [] (int dana) { return dana == 0 ? start_magazyn_id : dana == 1 ? cel_magazyn_id : pref_robot; }
+    /*!
+     * \brief Przeciazenie operatora indeksujacego dla struktury Zadanie.
+     *
+     * Przeciazenie pozwalajace na prace na zwroconych argumentach struktury Zadanie.
+     */
+    int & operator [] (TypDanych dana) {  return dana == START_MAGAZYN_ID ? start_magazyn_id : dana == CEL_MAGAZYN_ID ? cel_magazyn_id : pref_robot; }
 
+    int WezStartMagazynId() const{ return start_magazyn_id; }
+    void ZmienStartMagazynId(int nowyId) {  start_magazyn_id = nowyId; }
+    int WezCelMagazynId() const { return cel_magazyn_id; }
+    void ZmienCelMagazynId(int nowyId) { cel_magazyn_id = nowyId; }
+    int WezPreferowanegoRobotaId() const { return pref_robot; }
+    void ZmienPreferowanegoRobotaId(int nowyId)  { pref_robot = nowyId; }
 
+  private:
+    int start_magazyn_id; /*! zmienna typu int okreslajaca poczatkowy magazyn sciezki zadania */
+    int cel_magazyn_id; /*! zmienna typu int okreslajaca koncowy magazyn sciezki zadania */
+    int pref_robot; /*! zmienna typu int okreslajaca preferowanego robota do wykonania zadania */
 };
 
 /*!

@@ -10,16 +10,20 @@
 
 #include <QWidget>
 
-class MapWidget: public QWidget
+class MapWidget: public QWidget, public DataManager
 {
+    Q_OBJECT
 	public:
 		MapWidget(QWidget* parent = nullptr)
 				: QWidget(parent)
 		{
 		}
 
+	public slots:
+	    void refreshDataViewed();
+
 	protected:
 		void paintEvent(QPaintEvent* paintEvent);
 };
 
-#endif /* PRJ_SRC_LOGISTIC_SYSTEM_INCLUDE_LOGISTIC_SYSTEM_GUI_MAPWIDGET_HPP_ */
+#endif /* MAPWIDGET_HPP_ */

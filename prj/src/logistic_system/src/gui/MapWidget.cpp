@@ -21,3 +21,7 @@ void MapWidget::paintEvent(QPaintEvent* paintEvent)
 	//todo zaimplementować mapę
 }
 
+void MapWidget::refreshDataViewed()
+{
+
+}

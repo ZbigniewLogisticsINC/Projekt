@@ -6,9 +6,14 @@
  */
 
 #include "StorageInfoWidget.hpp"
-#include "TasksModel.hpp"
+
 
 void StorageInfoWidget::init()
 {
 	m_ui.setupUi(this);
+}
+
+void StorageInfoWidget::refreshDataViewed()
+{
+
 }

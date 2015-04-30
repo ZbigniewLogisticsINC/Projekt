@@ -11,7 +11,7 @@
 #include <QWidget>
 #include "ui_RobotInfoWidget.h"
 
-class RobotInfoWidget: public QWidget
+class RobotInfoWidget: public QWidget, public DataManager
 {
 	Q_OBJECT
 
@@ -21,6 +21,9 @@ class RobotInfoWidget: public QWidget
 		{
 		  init();
 		}
+
+	public slots:
+	    void refreshDataViewed();
 
 	private:
 		Ui::UiRobotInfoWidget m_ui;

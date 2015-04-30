@@ -13,3 +13,8 @@ void RobotInfoWidget::showAddDialog()
   AddRobotDialog dialog(this);
   dialog.exec();
 }
+
+void RobotInfoWidget::refreshDataViewed()
+{
+
+}

@@ -11,7 +11,7 @@
 #include <QDialog>
 #include "ui_AddTaskDialog.h"
 
-class AddTaskDialog: public QDialog
+class AddTaskDialog: public QDialog, public DataManager
 {
 	Q_OBJECT
 	public:
@@ -20,6 +20,8 @@ class AddTaskDialog: public QDialog
 		{
 			init();
 		}
+	public slots:
+	    void refreshDataViewed();
 
 	private:
 		void init();

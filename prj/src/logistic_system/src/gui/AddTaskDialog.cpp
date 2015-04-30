@@ -13,3 +13,7 @@ void AddTaskDialog::init()
 	m_ui.setupUi(this);
 }
 
+void AddTaskDialog::refreshDataViewed()
+{
+
+}

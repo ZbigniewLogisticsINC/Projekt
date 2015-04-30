@@ -4,21 +4,26 @@
 #include <QMainWindow>
 #include "ui_LogisticSystemMainWindow.h"
 
-class LogisticSystemMainWindow: public QMainWindow
+#include "RobotManagerDataObject.hpp"
+#include "DataManager.hpp"
+
+class LogisticSystemMainWindow: public QMainWindow, public DataManager
 {
 	Q_OBJECT
 
 	public:
 		LogisticSystemMainWindow(QWidget* parent = nullptr);
+
+	public slots:
+	    void refreshDataViewed();
 	protected:
 		void closeEvent(QCloseEvent* closeEvent);
-
 	private:
 		Ui::UiLogisticSystemMainWindow m_ui;
 		void init();
+
 	private slots:
 		void showAboutWndDialog();
-
 };
 
 #endif

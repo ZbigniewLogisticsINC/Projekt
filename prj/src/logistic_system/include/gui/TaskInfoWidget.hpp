@@ -10,8 +10,9 @@
 
 #include <QWidget>
 #include "ui_TaskInfoWidget.h"
+#include "DataManager.hpp"
 
-class TaskInfoWidget: public QWidget
+class TaskInfoWidget: public QWidget, public DataManager
 {
 	Q_OBJECT
 
@@ -23,11 +24,11 @@ class TaskInfoWidget: public QWidget
 
 	private slots:
 		void showAddTaskDialog();
+		void refreshDataViewed();
 
 	private:
 		void init();
 		Ui::UiTaskInfoWidget m_ui;
-
 };
 
 #endif /* TASKINFOWIDGET_HPP_ */

@@ -12,14 +12,18 @@
 #include "ui_StorageInfoWidget.h"
 
 
-class StorageInfoWidget: public QWidget
+class StorageInfoWidget: public QWidget, public DataManager
 {
+    Q_OBJECT
 	public:
 		StorageInfoWidget(QWidget* parent = nullptr)
 				: QWidget(parent)
 		{
 			init();
 		}
+
+	public slots:
+	    void refreshDataViewed();
 
 	private:
 		void init();
