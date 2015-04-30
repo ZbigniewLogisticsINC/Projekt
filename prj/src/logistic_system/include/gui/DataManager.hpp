@@ -14,7 +14,7 @@ class DataManager
 {
   public:
     DataManager():m_managerDataObject(new RobotManagerDataObject()) {} //todo uwaga na wyciek pamięci - później poprawić
-    void setRobotManagerData(RobotManagerData* managerData) { m_managerDataObject->setRobotManagerData(managerData); }
+    virtual void setRobotManagerData(RobotManagerData* managerData) { m_managerDataObject->setRobotManagerData(managerData); }
     const RobotManagerData* getRobotManagerData() const { return m_managerDataObject->getRobotManagerData(); }
   protected:
     RobotManagerDataObject* m_managerDataObject;

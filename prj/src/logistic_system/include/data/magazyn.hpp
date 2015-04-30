@@ -89,8 +89,8 @@ public :
  * \param      x  -  staly wskaznik typu double do argumentu wsp_x
  *
  */
-  void ZmienWspX(const double* x)
-  { wsp_x = *x;}
+  void ZmienWspX(const double& x)
+  { wsp_x = x;}
 
 /*! 
  * \brief zmienia wartosc pola wsp_y struktury Magazyn.
@@ -98,8 +98,8 @@ public :
  * \param      y  -  staly wskaznik typu double do argumentu wsp_y
  *
  */
-  void ZmienWspY(const double* y)
-  { wsp_y = *y;}
+  void ZmienWspY(const double y)
+  { wsp_y = y;}
 
 /*! 
  * \brief zmienia wartosc pola czy_wolny struktury Magazyn.
@@ -116,8 +116,8 @@ public :
  * \param      b  -  staly wskaznik typu int do argumentu id
  *
  */
-  void ZmienMagazynId(const int* Id)
-  { id = *Id;}
+  void ZmienMagazynId(const int &Id)
+  { id = Id;}
 
 };
 

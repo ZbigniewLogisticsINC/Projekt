@@ -13,7 +13,7 @@ class LogisticSystemMainWindow: public QMainWindow, public DataManager
 
 	public:
 		LogisticSystemMainWindow(QWidget* parent = nullptr);
-
+		void setRobotManagerData(RobotManagerData* managerData);
 	public slots:
 	    void refreshDataViewed();
 	protected:

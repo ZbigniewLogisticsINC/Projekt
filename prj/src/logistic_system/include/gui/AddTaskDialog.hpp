@@ -14,19 +14,20 @@
 
 class AddTaskDialog: public QDialog, public DataManager
 {
-	Q_OBJECT
-	public:
-		AddTaskDialog(QWidget* parent = nullptr)
-				: QDialog(parent)
-		{
-			init();
-		}
-	public slots:
-	    void refreshDataViewed();
+  Q_OBJECT
+  public:
+    AddTaskDialog(QWidget* parent = nullptr)
+        : QDialog(parent)
+    {
+      init();
+    }
+    void setRobotManagerData(RobotManagerData* managerData);
+  public slots:
+    void refreshDataViewed();
 
-	private:
-		void init();
-		Ui::UiAddTaskDialog m_ui;
+  private:
+    void init();
+    Ui::UiAddTaskDialog m_ui;
 
 };
 

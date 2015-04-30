@@ -23,11 +23,11 @@ istream & operator >> ( istream & StrmWe, Magazyn & M)
  double zm1;
  int zm2;
     StrmWe >> zm1;
-    if(StrmWe.fail()) return StrmWe; M.ZmienWspX(&zm1);
+    if(StrmWe.fail()) return StrmWe; M.ZmienWspX(zm1);
     StrmWe >> zm1;
-    if(StrmWe.fail()) return StrmWe; M.ZmienWspY(&zm1);
+    if(StrmWe.fail()) return StrmWe; M.ZmienWspY(zm1);
     StrmWe >> zm2;
-    if(StrmWe.fail()) return StrmWe; M.ZmienMagazynId(&zm2);
+    if(StrmWe.fail()) return StrmWe; M.ZmienMagazynId(zm2);
  
   return StrmWe;
 }

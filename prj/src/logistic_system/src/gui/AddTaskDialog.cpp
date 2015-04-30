@@ -5,21 +5,35 @@
  *      Author: mochman
  */
 
-
 #include "AddTaskDialog.hpp"
 #include <iostream>
 
 void AddTaskDialog::init()
 {
-	m_ui.setupUi(this);
-	connect(m_managerDataObject,SIGNAL(dataUpdated()),this,SLOT(refreshDataViewed()));
+  m_ui.setupUi(this);
+
+  connect(m_managerDataObject, SIGNAL(dataUpdated()), this,
+      SLOT(refreshDataViewed()));
+}
+
+void AddTaskDialog::setRobotManagerData(RobotManagerData* managerData)
+{
+  DataManager::setRobotManagerData(managerData);
+  refreshDataViewed();
 }
 
 void AddTaskDialog::refreshDataViewed()
 {
-	std::cout<<"JEST\n";
-	const RobotManagerData* data = getRobotManagerData();
-	static int i = 1;
-	m_ui.destinationStorageCombo->addItem(tr("Numer: %0").arg(i));
-	i++;
+  m_ui.startStorageCombo->clear();
+  m_ui.destinationStorageCombo->clear();
+  const RobotManagerData *data = getRobotManagerData();
+  if (data == nullptr)
+    return;
+
+  for (std::list<Magazyn>::const_iterator it = data->storeList().begin();
+      it != data->storeList().end(); it++)
+  {
+    m_ui.startStorageCombo->addItem(tr("%0").arg(it->WezMagazynId()));
+    m_ui.destinationStorageCombo->addItem(tr("%0").arg(it->WezMagazynId()));
+  }
 }

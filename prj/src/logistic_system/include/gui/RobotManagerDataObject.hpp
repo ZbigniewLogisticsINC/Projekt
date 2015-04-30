@@ -16,6 +16,7 @@ class RobotManagerDataObject:public QObject
     Q_OBJECT
 
   public:
+    RobotManagerDataObject(QObject* parent = nullptr):QObject(parent), m_managerData(nullptr) { }
     void setRobotManagerData(RobotManagerData* managerData );
     RobotManagerData* getRobotManagerData() { return m_managerData; }
     void update() { /*todo do zrobienia*/ }

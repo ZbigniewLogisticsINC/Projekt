@@ -55,11 +55,13 @@ class Zadanie {
     void ZmienCelMagazynId(int nowyId) { cel_magazyn_id = nowyId; }
     int WezPreferowanegoRobotaId() const { return pref_robot; }
     void ZmienPreferowanegoRobotaId(int nowyId)  { pref_robot = nowyId; }
-
+    int WezId() const { return id; }
+    void ZmienId(int nowyId) { id = nowyId; }
   private:
     int start_magazyn_id; /*! zmienna typu int okreslajaca poczatkowy magazyn sciezki zadania */
     int cel_magazyn_id; /*! zmienna typu int okreslajaca koncowy magazyn sciezki zadania */
     int pref_robot; /*! zmienna typu int okreslajaca preferowanego robota do wykonania zadania */
+    int id;
 };
 
 /*!

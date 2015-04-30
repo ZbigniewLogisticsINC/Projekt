@@ -16,6 +16,13 @@ LogisticSystemMainWindow::LogisticSystemMainWindow(QWidget* parent)
   init();
 }
 
+void LogisticSystemMainWindow::setRobotManagerData(
+    RobotManagerData* managerData)
+{
+  m_ui.taskWidget->setRobotManagerData(managerData);
+  DataManager::setRobotManagerData(managerData);
+}
+
 void LogisticSystemMainWindow::refreshDataViewed()
 {
 

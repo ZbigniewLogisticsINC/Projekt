@@ -23,15 +23,18 @@ public:
     bool addRobot(const Robot& robot);
     bool addStore(const Magazyn& magazyn);
     bool addGarage(const Garaz& garaz);
-    Robot* addRobotId(unsigned int id);
+    bool addTask(const Zadanie& task);
+    Robot* findRobotId(unsigned int id);
     Magazyn* findStoreId(unsigned int id);
     Garaz* findGarageId(unsigned int id);
     bool containsStoreId(unsigned int id) const;
     bool containsGarageId(unsigned int id) const;
     bool containsRobotId(unsigned int id) const;
-    const std::list<Zadanie> tasksList() const { return m_taskList; }
+    bool containsTaskId(unsigned int id) const;
+    const std::list<Zadanie>& tasksList() const { return m_taskList; }
+    const std::list<Magazyn>& storeList() const { return m_storeList; }
 public slots:
-    void update() { static int i=1;Robot r;r.ZmienRobotId(i);addRobot(r); emit dataUpdated(); }
+    void update() {  emit dataUpdated(); }
 signals:
   void dataUpdated();
 private:
