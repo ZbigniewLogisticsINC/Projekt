@@ -20,6 +20,7 @@ void LogisticSystemMainWindow::setRobotManagerData(
     RobotManagerData* managerData)
 {
   m_ui.taskWidget->setRobotManagerData(managerData);
+  m_ui.storageInfoWidget->setRobotManagerData(managerData);
   DataManager::setRobotManagerData(managerData);
 }
 

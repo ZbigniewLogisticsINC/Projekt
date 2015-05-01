@@ -13,11 +13,13 @@
 #include "robot.hpp"
 #include "magazyn.hpp"
 #include "garaz.hpp"
-#include <list>
+#include <vector>
 #include <QTimer>
+
 class RobotManagerData: public QObject
 {
     Q_OBJECT
+
 public:
 	RobotManagerData(QObject* parent = nullptr);
     bool addRobot(const Robot& robot);
@@ -31,17 +33,19 @@ public:
     bool containsGarageId(unsigned int id) const;
     bool containsRobotId(unsigned int id) const;
     bool containsTaskId(unsigned int id) const;
-    const std::list<Zadanie>& tasksList() const { return m_taskList; }
-    const std::list<Magazyn>& storeList() const { return m_storeList; }
+    bool removeTaskId(unsigned int id);
+    bool removerStorageId(unsigned int id);
+    const std::vector<Zadanie>& tasksVector() const { return m_taskVector; }
+    const std::vector<Magazyn>& storeVector() const { return m_storeVector; }
 public slots:
     void update() {  emit dataUpdated(); }
 signals:
   void dataUpdated();
 private:
-    std::list<Zadanie> m_taskList;
-    std::list<Magazyn> m_storeList;
-    std::list<Garaz> m_garageList;
-    std::list<Robot> m_robotList;
+    std::vector<Zadanie> m_taskVector;
+    std::vector<Magazyn> m_storeVector;
+    std::vector<Garaz> m_garageVector;
+    std::vector<Robot> m_robotVector;
 };
 
 #endif /* ROBOT_MANAGER_DATA_HPP_ */

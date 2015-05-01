@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <property name="movable">
        <bool>true</bool>
@@ -73,7 +73,7 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
-         <widget class="StorageInfoWidget" name="widget_4" native="true"/>
+         <widget class="StorageInfoWidget" name="storageInfoWidget" native="true"/>
         </item>
        </layout>
       </widget>
