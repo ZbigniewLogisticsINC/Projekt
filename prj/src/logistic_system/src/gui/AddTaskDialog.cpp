@@ -50,9 +50,15 @@ void AddTaskDialog::refreshDestCombo(QString newValue)
 
 void AddTaskDialog::setTaskFromDialog()
 {
-  // brak sprawdzania poprawności konwersji
-  m_task.ZmienPreferowanegoRobotaId(m_ui.robotCombo->currentText().toInt());
+  m_task.ZmienPreferowanegoRobotaId(
+      m_ui.robotCombo->currentText().toInt(&m_taskCorrect));
+  if (!m_taskCorrect)
+    return;
   m_task.ZmienId(s_taskId++);
-  m_task.ZmienCelMagazynId(m_ui.destinationStorageCombo->currentText().toInt());
-  m_task.ZmienStartMagazynId(m_ui.startStorageCombo->currentText().toInt());
+  m_task.ZmienCelMagazynId(
+      m_ui.destinationStorageCombo->currentText().toInt(&m_taskCorrect));
+  if (!m_taskCorrect)
+    return;
+  m_task.ZmienStartMagazynId(
+      m_ui.startStorageCombo->currentText().toInt(&m_taskCorrect));
 }

@@ -18,9 +18,10 @@ class AddTaskDialog: public QDialog, public DataManager
   Q_OBJECT
   public:
     AddTaskDialog(QWidget* parent = nullptr)
-        : QDialog(parent) { init(); }
+        : QDialog(parent), m_taskCorrect(false) { init(); }
     void setRobotManagerData(RobotManagerData* managerData);
     const Zadanie& task() const { return m_task; }
+    bool taskCorrect() const { return m_taskCorrect; }
   public slots:
     void refreshDataViewed();
     void refreshDestCombo(QString);
@@ -29,6 +30,7 @@ class AddTaskDialog: public QDialog, public DataManager
     Ui::UiAddTaskDialog m_ui;
     Zadanie m_task;
     static unsigned int s_taskId;
+    bool m_taskCorrect;
   private slots:
     void setTaskFromDialog();
 };

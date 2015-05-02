@@ -31,7 +31,7 @@ void TaskInfoWidget::showAddTaskDialog()
 {
   AddTaskDialog addDialog(this);
   addDialog.setRobotManagerData(getRobotManagerData());
-  if (addDialog.exec() == QDialog::Accepted)
+  if (addDialog.exec() == QDialog::Accepted && addDialog.taskCorrect())
   {
     m_taskModel->addTask(addDialog.task());
     updateTotalTasksNumber();
@@ -42,6 +42,8 @@ void TaskInfoWidget::removeSelected()
 {
   m_taskModel->removeTaskId(m_currentRowSelected + 1);
   updateTotalTasksNumber();
+  if (m_managerData->tasksVector().size() == 0)
+    m_ui.removeButton->setEnabled(false);
 }
 
 void TaskInfoWidget::updateSelectedRowNumber(const QModelIndex & current,

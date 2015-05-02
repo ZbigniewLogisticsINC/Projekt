@@ -46,9 +46,7 @@ int TaskModel::rowCount(const QModelIndex &parent) const
 
 int TaskModel::columnCount(const QModelIndex &parent) const
 {
-  if (m_managerData == nullptr)
-    return 0;
-  return 3;
+  return 4;
 }
 
 QVariant TaskModel::data(const QModelIndex &index, int role) const
@@ -59,10 +57,12 @@ QVariant TaskModel::data(const QModelIndex &index, int role) const
     switch (index.column())
     {
       case 0:
-        return m_managerData->tasksVector()[index.row()].WezStartMagazynId();
+        return m_managerData->tasksVector()[index.row()].WezId();
       case 1:
-        return m_managerData->tasksVector()[index.row()].WezCelMagazynId();
+        return m_managerData->tasksVector()[index.row()].WezStartMagazynId();
       case 2:
+        return m_managerData->tasksVector()[index.row()].WezCelMagazynId();
+      case 3:
         return m_managerData->tasksVector()[index.row()].WezPreferowanegoRobotaId();
     }
   return QVariant();
@@ -78,16 +78,18 @@ QVariant TaskModel::headerData(int section, Qt::Orientation orientation,
       switch (section)
       {
         case 0:
-          return tr("Start Storage");
+          return tr("Id");
         case 1:
-          return tr("Destination Storage");
+          return tr("Start Storage");
         case 2:
+          return tr("Destination Storage");
+        case 3:
           return tr("Preffered Robot");
       }
     }
     else
       if (orientation == Qt::Vertical)
-        return m_managerData->tasksVector()[section].WezId();
+        return section + 1;
   }
   return QVariant();
 }

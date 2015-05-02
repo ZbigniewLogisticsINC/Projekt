@@ -128,13 +128,25 @@ bool RobotManagerData::removeTaskId(unsigned int id)
   return false;
 }
 
-bool RobotManagerData::removerStorageId(unsigned int id)
+bool RobotManagerData::removeStorageId(unsigned int id)
 {
   std::vector<Magazyn>::iterator it = m_storeVector.begin();
   for (; it != m_storeVector.end(); it++)
     if (it->WezMagazynId() == id)
     {
       m_storeVector.erase(it, it + 1);
+      return true;
+    }
+  return false;
+}
+
+bool RobotManagerData::removeGarageId(unsigned int id)
+{
+  std::vector<Garaz>::iterator it = m_garageVector.begin();
+  for (; it != m_garageVector.end(); it++)
+    if (it->WezGarazId() == id)
+    {
+      m_garageVector.erase(it, it + 1);
       return true;
     }
   return false;

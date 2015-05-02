@@ -1,49 +1,49 @@
 /*
- * StoreModel.cpp
+ * GarageModel.hpp
  *
- *  Created on: May 1, 2015
+ *  Created on: May 2, 2015
  *      Author: mochman
  */
 
-#include "StorageModel.hpp"
+#include "GarageModel.hpp"
 
-void StorageModel::setRobotManagerData(RobotManagerData* data)
+void GarageModel::setRobotManagerData(RobotManagerData* data)
 {
   beginResetModel();
   DataManager::setRobotManagerData(data);
   endResetModel();
 }
 
-bool StorageModel::addStore(const Magazyn& storage)
+bool GarageModel::addGarage(const Garaz& garaz)
 {
   bool result = false;
   if (m_managerData != nullptr)
   {
     beginInsertRows(QModelIndex(), m_managerData->storeVector().size() + 1,
         m_managerData->storeVector().size() + 1);
-    result = m_managerData->addStore(storage);
+    result = m_managerData->addGarage(garaz);
     endInsertRows();
   }
   return result;
 }
 
-bool StorageModel::removeStoreId(unsigned int id)
+bool GarageModel::removeGarageId(unsigned int id)
 {
   beginRemoveRows(QModelIndex(), id - 1, id - 1);
-  m_managerData->removeStorageId(id);
+  m_managerData->removeGarageId(id);
   endRemoveRows();
 }
 
-int StorageModel::rowCount(const QModelIndex &parent) const
+int GarageModel::rowCount(const QModelIndex &parent) const
 {
-  return m_managerData != nullptr ? m_managerData->storeVector().size() : 0;
+  return m_managerData != nullptr ? m_managerData->garageVector().size() : 0;
 }
 
-int StorageModel::columnCount(const QModelIndex &parent) const
+int GarageModel::columnCount(const QModelIndex &parent) const
 {
   return 3;
 }
-QVariant StorageModel::headerData(int section, Qt::Orientation orientation,
+QVariant GarageModel::headerData(int section, Qt::Orientation orientation,
     int role) const
 {
   if (role == Qt::DisplayRole)
@@ -67,7 +67,7 @@ QVariant StorageModel::headerData(int section, Qt::Orientation orientation,
   return QVariant();
 }
 
-QVariant StorageModel::data(const QModelIndex &index, int role) const
+QVariant GarageModel::data(const QModelIndex &index, int role) const
 {
   if (m_managerData == nullptr)
     return QVariant();
@@ -75,12 +75,11 @@ QVariant StorageModel::data(const QModelIndex &index, int role) const
     switch (index.column())
     {
       case 0:
-        return m_managerData->storeVector()[index.row()].WezMagazynId();
+        return m_managerData->garageVector()[index.row()].WezGarazId();
       case 1:
-        return m_managerData->storeVector()[index.row()].WezWspX();
+        return m_managerData->garageVector()[index.row()].WezWspX();
       case 2:
-        return m_managerData->storeVector()[index.row()].WezWspY();
+        return m_managerData->garageVector()[index.row()].WezWspY();
     }
   return QVariant();
 }
-

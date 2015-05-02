@@ -54,5 +54,7 @@ void StorageInfoWidget::removeSelected()
   {
     m_storageModel->removeStoreId(m_selectedRow + 1);
     updateTotalStorageNumber();
+    if (m_managerData->storeVector().size() == 0)
+      m_ui.removeButton->setEnabled(false);
   }
 }

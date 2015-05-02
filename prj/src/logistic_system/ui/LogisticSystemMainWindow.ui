@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <property name="movable">
        <bool>true</bool>
@@ -29,7 +29,7 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="RobotInfoWidget" name="widget_2" native="true"/>
+         <widget class="RobotInfoWidget" name="robotWidget" native="true"/>
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -74,6 +74,16 @@
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
          <widget class="StorageInfoWidget" name="storageInfoWidget" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Garage</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="GarageInfoWidget" name="garageInfoWidget" native="true"/>
         </item>
        </layout>
       </widget>
@@ -150,6 +160,12 @@
    <class>StorageInfoWidget</class>
    <extends>QWidget</extends>
    <header>StorageInfoWidget.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>GarageInfoWidget</class>
+   <extends>QWidget</extends>
+   <header>GarageInfoWidget.hpp</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

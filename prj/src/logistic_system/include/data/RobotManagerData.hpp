@@ -34,9 +34,11 @@ public:
     bool containsRobotId(unsigned int id) const;
     bool containsTaskId(unsigned int id) const;
     bool removeTaskId(unsigned int id);
-    bool removerStorageId(unsigned int id);
+    bool removeStorageId(unsigned int id);
+    bool removeGarageId(unsigned int id);
     const std::vector<Zadanie>& tasksVector() const { return m_taskVector; }
     const std::vector<Magazyn>& storeVector() const { return m_storeVector; }
+    const std::vector<Garaz>& garageVector() const { return m_garageVector; }
 public slots:
     void update() {  emit dataUpdated(); }
 signals:
