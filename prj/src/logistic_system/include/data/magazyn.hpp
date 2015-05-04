@@ -107,8 +107,8 @@ public :
  * \param      wsp  -  staly wskaznik typu bool do argumentu czy_wolny danego magazynu
  *
  */
-  void ZmienCzyWolny(const bool* wsp)
-  { czy_wolny = *wsp;}
+  void ZmienCzyWolny(const bool& wsp)
+  { czy_wolny = wsp;}
 
 /*! 
  * \brief zmienia wartosc pola id struktury Magazyn.

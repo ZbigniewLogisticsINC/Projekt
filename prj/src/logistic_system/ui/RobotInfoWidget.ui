@@ -77,41 +77,10 @@
           </item>
          </layout>
         </item>
-        <item>
-         <widget class="QTableView" name="tableView"/>
-        </item>
        </layout>
       </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox_2">
-     <property name="title">
-      <string>Robot Info</string>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <widget class="QTabWidget" name="Position">
-        <property name="currentIndex">
-         <number>0</number>
-        </property>
-        <widget class="QWidget" name="tab">
-         <attribute name="title">
-          <string>Position</string>
-         </attribute>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
-          <item>
-           <widget class="QTableView" name="tableView_2"/>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="tab_2">
-         <attribute name="title">
-          <string>Velocity</string>
-         </attribute>
-        </widget>
-       </widget>
+       <widget class="QTableView" name="tableView"/>
       </item>
      </layout>
     </widget>

@@ -22,11 +22,11 @@ istream & operator >> ( istream & StrmWe, Garaz & G)
  double zm1;
  int zm2;
     StrmWe >> zm1;
-    if(StrmWe.fail()) return StrmWe;  G.ZmienWspX(&zm1);
+    if(StrmWe.fail()) return StrmWe;  G.ZmienWspX(zm1);
     StrmWe >> zm1;
-    if(StrmWe.fail()) return StrmWe;  G.ZmienWspY(&zm1);
+    if(StrmWe.fail()) return StrmWe;  G.ZmienWspY(zm1);
     StrmWe >> zm2;
-    if(StrmWe.fail()) return StrmWe;  G.ZmienGarazId(&zm2);
+    if(StrmWe.fail()) return StrmWe;  G.ZmienGarazId(zm2);
  
   return StrmWe;
 }

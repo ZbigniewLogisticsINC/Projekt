@@ -16,11 +16,7 @@ class AboutRobotManagerDialog: public QDialog
 	Q_OBJECT
 	public:
 		AboutRobotManagerDialog(QWidget* parent = nullptr)
-				: QDialog(parent)
-		{
-			m_ui.setupUi(this);
-		}
-
+				: QDialog(parent) { m_ui.setupUi(this); }
 	private:
 		Ui::UiAboutRobotManagerDialog m_ui;
 };

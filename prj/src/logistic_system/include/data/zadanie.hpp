@@ -34,6 +34,10 @@ using namespace std;
  */
 class Zadanie {
   public:
+
+    Zadanie(int idZadania=-1,int startMagazyn=-1, int celMagazyn=-1,int preferowanyRobot=-1 )
+      :id(idZadania), start_magazyn_id(startMagazyn), cel_magazyn_id(celMagazyn), pref_robot(preferowanyRobot) { }
+
     enum TypDanych{ START_MAGAZYN_ID,CEL_MAGAZYN_ID,PREF_ROBOT};
     /*!
      * \brief Przeciazenie operatora indeksujacego dla struktury Zadanie.

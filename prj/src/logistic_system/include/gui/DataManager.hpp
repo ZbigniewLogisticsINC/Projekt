@@ -13,11 +13,13 @@
 class DataManager
 {
   public:
-    DataManager():m_managerDataObject(new RobotManagerDataObject()) {} //todo uwaga na wyciek pamięci - później poprawić
-    virtual void setRobotManagerData(RobotManagerData* managerData) { m_managerDataObject->setRobotManagerData(managerData); }
-    const RobotManagerData* getRobotManagerData() const { return m_managerDataObject->getRobotManagerData(); }
+    DataManager():m_managerData(nullptr) { }
+    virtual void setRobotManagerData(RobotManagerData* managerData) { m_managerData = managerData; }
+    RobotManagerData* getRobotManagerData()  { return m_managerData; }
+    virtual ~DataManager() { }
   protected:
-    RobotManagerDataObject* m_managerDataObject;
+    RobotManagerData* m_managerData;
+
 };
 
 #endif /* DATAMANAGER_HPP_ */

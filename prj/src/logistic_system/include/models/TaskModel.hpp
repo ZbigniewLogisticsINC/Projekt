@@ -10,31 +10,30 @@
 
 #include <QAbstractTableModel>
 #include <QList>
+#include "DataManager.hpp"
 
-#include "zadanie.hpp"
-
-class ZadanieModel: public QAbstractTableModel
+class TaskModel: public QAbstractTableModel, public DataManager
 {
-    Q_OBJECT
+  Q_OBJECT
 
   public:
-    ZadanieModel(QObject* rodzic = nullptr)
-    : QAbstractTableModel(rodzic)
+    TaskModel(QObject* parent = nullptr)
+        : QAbstractTableModel(parent)
     {
+      init();
     }
-
-    void pushBack(const Zadanie& zadanie)
-    {
-      m_listaZadan.push_back(zadanie);
-    }
-
+    void addTask(const Zadanie& task);
+    void setRobotManagerData(RobotManagerData* data);
+    void removeTaskId(int id);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
-    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+    QVariant headerData(int section, Qt::Orientation orientation,
+        int role) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
   private:
-    QList<Zadanie> m_listaZadan;
+    void init();
+
 };
 
 #endif /* TASKSMODELS_HPP_ */

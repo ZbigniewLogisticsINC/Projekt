@@ -11,24 +11,28 @@
 #include <QDialog>
 #include "ui_AddTaskDialog.h"
 #include "DataManager.hpp"
+#include "zadanie.hpp"
 
 class AddTaskDialog: public QDialog, public DataManager
 {
   Q_OBJECT
   public:
     AddTaskDialog(QWidget* parent = nullptr)
-        : QDialog(parent)
-    {
-      init();
-    }
+        : QDialog(parent), m_taskCorrect(false) { init(); }
     void setRobotManagerData(RobotManagerData* managerData);
+    const Zadanie& task() const { return m_task; }
+    bool taskCorrect() const { return m_taskCorrect; }
   public slots:
     void refreshDataViewed();
-
+    void refreshDestCombo(QString);
   private:
     void init();
     Ui::UiAddTaskDialog m_ui;
-
+    Zadanie m_task;
+    static unsigned int s_taskId;
+    bool m_taskCorrect;
+  private slots:
+    void setTaskFromDialog();
 };
 
 #endif /* ADDTASKDIALOG_HPP_ */

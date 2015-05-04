@@ -10,25 +10,28 @@
 
 #include <QWidget>
 #include "ui_StorageInfoWidget.h"
-#include "DataManager.hpp"
+#include "StorageModel.hpp"
 
 class StorageInfoWidget: public QWidget, public DataManager
 {
     Q_OBJECT
-	public:
-		StorageInfoWidget(QWidget* parent = nullptr)
-				: QWidget(parent)
-		{
-			init();
-		}
+  public:
+    StorageInfoWidget(QWidget* parent = nullptr)
+    : QWidget(parent), m_selectedRow(-1) { init(); }
+    void setRobotManagerData(RobotManagerData* managerData);
+    public slots:
+      void showAddStorageDialog();
 
-	public slots:
-	    void refreshDataViewed();
-
-	private:
-		void init();
-
-		Ui::UiStorageInfoWidget m_ui;
+    private slots:
+      void updateSelectedRowNumber(const QModelIndex & current, const QModelIndex & previous);
+      void removeSelected();
+    private:
+      void init();
+      void updateTotalStorageNumber()
+        { m_ui.totalStorageNumberLabel->setText(tr("%1").arg(m_managerData->storeVector().size())); }
+      Ui::UiStorageInfoWidget m_ui;
+      StorageModel* m_storageModel;
+      int m_selectedRow;
 };
 
 #endif /* STORAGEINFOWIDGET_HPP_ */
