@@ -33,6 +33,7 @@ public:
     bool containsTaskId(unsigned int id) const;
     const std::list<Zadanie>& tasksList() const { return m_taskList; }
     const std::list<Magazyn>& storeList() const { return m_storeList; }
+    const std::list<Robot>& robotList() const { return m_robotList; }
 public slots:
     void update() {  emit dataUpdated(); }
 signals:
