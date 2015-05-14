@@ -10,17 +10,17 @@ int DobierzRobota::Dobierz_Robota(int ZadanieId)
 	double najkrotsza_trasa = 10000, trasa;
 
 	RobotManagerData* robotmanagerdata = getRobotManagerData();
-	const std::list<Zadanie>& listazadan = robotmanagerdata->tasksList();
-	const std::list<Robot>& listarobotow = robotmanagerdata->robotList();	
+	const std::vector<Zadanie>& listazadan = robotmanagerdata->tasksVector();
+	const std::vector<Robot>& listarobotow = robotmanagerdata->robotVector();
 
-	for(std::list<Zadanie>::const_iterator it1=listazadan.begin(); it1!=listazadan.end(); it1++)
+	for(std::vector<Zadanie>::const_iterator it1=listazadan.begin(); it1!=listazadan.end(); it1++)
 	{
 		if(it1->WezId()==ZadanieId)
 		{
 					
 			magazyn = robotmanagerdata->findStoreId(it1->WezStartMagazynId());
 			cel = robotmanagerdata->findStoreId(it1->WezCelMagazynId());
-			for(std::list<Robot>::const_iterator it2=listarobotow.begin(); it2!=listarobotow.end(); it2++)
+			for(std::vector<Robot>::const_iterator it2=listarobotow.begin(); it2!=listarobotow.end(); it2++)
 			{
 				if(it2->WezCzyWolny())
 				{	
