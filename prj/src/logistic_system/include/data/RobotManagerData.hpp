@@ -31,18 +31,22 @@ public:
     bool containsGarageId(unsigned int id) const;
     bool containsRobotId(unsigned int id) const;
     bool containsTaskId(unsigned int id) const;
-    const std::list<Zadanie>& tasksList() const { return m_taskList; }
-    const std::list<Magazyn>& storeList() const { return m_storeList; }
-    const std::list<Robot>& robotList() const { return m_robotList; }
+    bool removeTaskId(unsigned int id);
+    bool removeStorageId(unsigned int id);
+    bool removeGarageId(unsigned int id);
+    const std::vector<Zadanie>& tasksVector() const { return m_taskVector; }
+    const std::vector<Magazyn>& storeVector() const { return m_storeVector; }
+    const std::vector<Robot>& robotVector() const { return m_robotVector; }
+    const std::vector<Garaz>& garageVector() const { return m_garageVector; }
 public slots:
     void update() {  emit dataUpdated(); }
 signals:
   void dataUpdated();
 private:
-    std::list<Zadanie> m_taskList;
-    std::list<Magazyn> m_storeList;
-    std::list<Garaz> m_garageList;
-    std::list<Robot> m_robotList;
+    std::vector<Zadanie> m_taskVector;
+    std::vector<Magazyn> m_storeVector;
+    std::vector<Garaz> m_garageVector;
+    std::vector<Robot> m_robotVector;
 };
 
 #endif /* ROBOT_MANAGER_DATA_HPP_ */
