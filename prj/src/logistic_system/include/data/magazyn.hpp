@@ -36,6 +36,9 @@ using namespace std;
 class Magazyn {
 double wsp_x;  /*! zmienna typu double przechowujaca informacje o wsp. x magazynu */
 double wsp_y;  /*! zmienna typu double przechowujaca informacje o wsp. y magazynu */
+double wspwej_x;  /*! zmienna typu double przechowujaca informacje o wsp. x punktu wjazdu do magazynu */
+double wspwej_y;  /*! zmienna typu double przechowujaca informacje o wsp. y punktu wjazdu do magazynu */
+
 bool czy_wolny; /*! zmienna typu bool przechowujaca informacje o dostepnosci danego magazynu */
 int id;   /*! zmienna typu int przechowujaca identyfikator danego magazynu */
   
@@ -47,7 +50,7 @@ public :
  * Wstepnie deklaruje wartosci zapisane do parametrow struktury Magazyn
  * 0 dla zmiennych typu double i int oraz TRUE dla zmiennej typu bool
  */
-  Magazyn() { wsp_x = wsp_y = 0; id = 0; czy_wolny = 1;}
+  Magazyn() { wsp_x = wsp_y = wspwej_x = wspwej_y = 0; id = 0; czy_wolny = 1;}
 
 //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 //Funkcje dostepu do zmiennych struktury Magazyn
@@ -65,6 +68,23 @@ public :
  * \return zwraca wsp y danego magazynu. 
  */
   const double & WezWspY() const { return wsp_y; }
+
+/*! 
+
+ * \brief Umozliwia dostep do prywatnego argumentu (typu double) wspwej_x struktury Magazyn.
+ *
+ * \return zwraca wsp x punktu wjazdu do danego magazynu.
+ */
+  const double & WezWspWejX() const { return wspwej_x; }
+
+/*! 
+ * \brief Umozliwia dostep do prywatnego argumentu (typu double) wspwej_y struktury Magazyn.
+ *
+ * \return zwraca wsp y punktu wjazdu do danego magazynu. 
+
+ */
+  const double & WezWspWejY() const { return wspwej_y; }
+
 
 /*! 
  * \brief Umozliwia dostep do prywatnego argumentu (typu bool) czy_wolny struktury Magazyn.
@@ -100,6 +120,26 @@ public :
  */
   void ZmienWspY(const double y)
   { wsp_y = y;}
+
+/*! 
+ * \brief zmienia wartosc pola wspwej_x struktury Magazyn.
+ *
+
+ * \param      x  -  staly wskaznik typu double do argumentu wspwej_x
+ *
+ */
+  void ZmienWspWejX(const double& x)
+  { wspwej_x = x;}
+
+/*! 
+ * \brief zmienia wartosc pola wspwej_y struktury Magazyn.
+ *
+ * \param      y  -  staly wskaznik typu double do argumentu wspwej_y
+ *
+
+ */
+  void ZmienWspWejY(const double y)
+  { wspwej_y = y;}
 
 /*! 
  * \brief zmienia wartosc pola czy_wolny struktury Magazyn.

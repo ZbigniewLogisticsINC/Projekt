@@ -26,6 +26,10 @@ istream & operator >> ( istream & StrmWe, Magazyn & M)
     if(StrmWe.fail()) return StrmWe; M.ZmienWspX(zm1);
     StrmWe >> zm1;
     if(StrmWe.fail()) return StrmWe; M.ZmienWspY(zm1);
+    StrmWe >> zm1;
+    if(StrmWe.fail()) return StrmWe; M.ZmienWspWejX(&zm1);
+    StrmWe >> zm1;
+    if(StrmWe.fail()) return StrmWe; M.ZmienWspWejY(&zm1);
     StrmWe >> zm2;
     if(StrmWe.fail()) return StrmWe; M.ZmienMagazynId(zm2);
  
@@ -35,10 +39,12 @@ istream & operator >> ( istream & StrmWe, Magazyn & M)
 
 ostream & operator << ( ostream & StrmWy, Magazyn M)
 {
-double x, y;
-bool w;
-int i;
-x=M.WezWspX(); y=M.WezWspY(); w=M.WezCzyWolny(); i=M.WezMagazynId();
-  StrmWy << x << "  " << y << "  " << i << "  " << w;
-  return StrmWy;
+ double x, y;
+ bool w;
+ int i;
+    x=M.WezWspX();       y=M.WezWspY();
+    xwej=M.WezWspWejX(); ywej=M.WezWspWejY();
+    w=M.WezCzyWolny();   i=M.WezMagazynId();
+    StrmWy << x << "  " << y << "  " <<  xwej << "  " <<  ywej << "  " << i << "  " << w;
+    return StrmWy;
 }
