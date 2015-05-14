@@ -1,5 +1,8 @@
 <RCC>
-  <qresource prefix="newPrefix">
+  <qresource prefix="icon">
+    <file>storage.png</file>
+    <file>garage.png</file>
+    <file>robotMap.png</file>
     <file>robot.png</file>
   </qresource>
 </RCC>
