@@ -151,3 +151,15 @@ bool RobotManagerData::removeGarageId(unsigned int id)
     }
   return false;
 }
+
+bool RobotManagerData::removeRobotId(unsigned int id)
+{
+  std::vector<Robot>::iterator it = m_robotVector.begin();
+  for (; it != m_robotVector.end(); it++)
+    if (it->WezRobotId() == id)
+    {
+      m_robotVector.erase(it, it + 1);
+      return true;
+    }
+  return false;
+}

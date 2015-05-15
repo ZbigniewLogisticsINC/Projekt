@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>450</width>
-    <height>368</height>
+    <height>393</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../rsrc/rsrc.qrc">:/newPrefix/robot.png</pixmap>
+        <pixmap resource="../rsrc/rsrc.qrc">:/icon/robot.png</pixmap>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>

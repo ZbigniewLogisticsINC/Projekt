@@ -34,6 +34,7 @@ public:
     bool removeTaskId(unsigned int id);
     bool removeStorageId(unsigned int id);
     bool removeGarageId(unsigned int id);
+    bool removeRobotId(unsigned int id);
     const std::vector<Zadanie>& tasksVector() const { return m_taskVector; }
     const std::vector<Magazyn>& storeVector() const { return m_storeVector; }
     const std::vector<Robot>& robotVector() const { return m_robotVector; }

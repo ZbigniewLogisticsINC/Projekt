@@ -19,10 +19,10 @@ class MapWidget: public QWidget, public DataManager
 				: QWidget(parent)
 		{
 		}
-
+		static const double WIDTH;
+		static const double HEIGHT;
 	public slots:
 	    void refreshDataViewed();
-
 	protected:
 		void paintEvent(QPaintEvent* paintEvent);
 };

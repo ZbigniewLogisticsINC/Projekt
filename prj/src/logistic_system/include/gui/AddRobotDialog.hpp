@@ -12,10 +12,17 @@ class AddRobotDialog: public QDialog, public DataManager
 
   public:
     AddRobotDialog(QWidget* parent = nullptr): QDialog(parent), m_managerDataObject(nullptr) { init(); }
+    void setRobotManagerData(RobotManagerData* managerData);
+    bool robotCorrect() const;
+    const Robot& robot() const { return m_robot; }
   public slots:
     void refreshDataViewed();
+  private slots:
+    void setRobotInfo();
   private:
     void init();
+    void fillGarageCombo();
+    Robot m_robot;
     Ui::UiAddRobotDialog m_ui;
     RobotManagerDataObject* m_managerDataObject;
 };
