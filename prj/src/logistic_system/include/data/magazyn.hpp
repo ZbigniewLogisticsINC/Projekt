@@ -118,7 +118,7 @@ public :
  * \param      y  -  staly wskaznik typu double do argumentu wsp_y
  *
  */
-  void ZmienWspY(const double y)
+  void ZmienWspY(const double& y)
   { wsp_y = y;}
 
 /*! 
@@ -138,7 +138,7 @@ public :
  *
 
  */
-  void ZmienWspWejY(const double y)
+  void ZmienWspWejY(const double& y)
   { wspwej_y = y;}
 
 /*! 

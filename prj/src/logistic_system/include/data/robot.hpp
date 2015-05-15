@@ -37,7 +37,7 @@ double wsp_x;  /*! zmienna typu double przechowujaca informacje o biezacej wsp. 
 double wsp_y;  /*! zmienna typu double przechowujaca informacje o biezacej wsp. y robota */
 int id;  /*! zmienna typu int przechowujaca identyfikator robota */
 bool czy_wolny; /*! zmienna typu bool przechowujaca informacje o dostepnosci danego robota */
-  
+int garazId;
 public :
 
 /*! 
@@ -46,7 +46,7 @@ public :
  * Wstepnie deklaruje wartosci zapisane do parametrow struktury Robot
  * 0 dla zmiennych typu double i int oraz TRUE dla zmiennej typu bool
  */
-  Robot() { wsp_x = wsp_y = 0; id = 0; czy_wolny = 1;}
+  Robot() { wsp_x = wsp_y = 0; id = 0; czy_wolny = 1;garazId = 0;}
 
 //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 //Funkcje dostepu do zmiennych struktury Robot
@@ -78,6 +78,9 @@ public :
  * \return Umozliwia dostep do numeru identyfikacyjnego danego robota.
  */
   const int & WezRobotId() const { return id; }
+
+
+  const int& WezGarazId() const { return garazId; }
 
 //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 // Funkcje zmieniajace wartosci zmiennych w strukturze Robot
@@ -118,6 +121,8 @@ public :
   void ZmienRobotId(const int& Id)
   { id = Id;}
 
+
+  void ZmienGarazId(const int& id) { garazId = id; }
 };
 
 
