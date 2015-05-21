@@ -15,10 +15,7 @@ void RobotInfoWidget::showAddDialog()
   AddRobotDialog dialog(this);
   dialog.setRobotManagerData(m_managerData);
   if (dialog.exec() == QDialog::Accepted && dialog.robotCorrect())
-  {
     m_robotModel->addRobot(dialog.robot());
-
-  }
 }
 
 void RobotInfoWidget::setRobotManagerData(RobotManagerData* managerData)

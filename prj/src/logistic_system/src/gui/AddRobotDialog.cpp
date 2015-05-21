@@ -39,8 +39,13 @@ bool AddRobotDialog::robotCorrect() const
 {
   bool isCorrect = true;
   for (int i = 0; i < m_managerData->robotVector().size() && isCorrect; i++)
+  {
     if (m_managerData->robotVector()[i].WezRobotId() == m_ui.spinBox->value())
       isCorrect = false;
+  }
+
+  if (m_ui.comboBox->currentIndex() < 0)
+    isCorrect = false;
   return isCorrect;
 }
 
