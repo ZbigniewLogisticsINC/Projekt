@@ -21,8 +21,8 @@ class RobotInfoWidget: public QWidget, public DataManager
     RobotInfoWidget(QWidget* parent = nullptr)
     : QWidget(parent)    { init(); }
     public slots:
-    void refreshDataViewed();
-    void setRobotManagerData(RobotManagerData* managerData);
+      void refreshDataViewed();
+      void setRobotManagerData(RobotManagerData* managerData);
     private:
       Ui::UiRobotInfoWidget m_ui;
       void init();

@@ -6,7 +6,6 @@
  */
 
 #include "MapWidget.hpp"
-#include <QPainter>
 #include <QPaintEvent>
 #include <cmath>
 
@@ -29,14 +28,49 @@ void MapWidget::paintEvent(QPaintEvent* paintEvent)
     return;
   }
 
-  QPixmap robotIcon(":/icon/robotMap.png");
-  for (const Robot& robot : getRobotManagerData()->robotVector())
-  {
-    QPixmap scaledRobotIcon = robotIcon.scaledToWidth(0.3 / WIDTH * width);
-    painter.drawPixmap(robot.WezWspY() / WIDTH * width,
-        robot.WezWspX() / HEIGHT * height, scaledRobotIcon);
-  }
+  drawAllRobot(painter);
+  drawAllGarage(painter);
+  drawAllStorage(painter);
 
+  QWidget::paintEvent(paintEvent);
+}
+
+double MapWidget::getAngleInDegrees(double x1, double y1, double x2,
+    double y2) const
+{
+  double angle;
+  double h = y2 - y1, a = x2 - x1;
+  if (a >= 1e-6 && a <= 1e-6)
+  {
+    if (h > 0)
+      angle = -90;
+    else
+      angle = 90;
+  }
+  else
+  {
+    if (h > 0)
+    {
+      if (a > 0)
+        angle = -90 + atan(h / a) * 180 / 3.14159265;
+      else
+        angle = atan(h / -a) * 180 / 3.14159265;
+    }
+    else
+    {
+      if (a > 0)
+        angle = -90 - atan(-h / a) * 180 / 3.14159265;
+      else
+        angle = 90 + atan(h / a) * 180 / 3.14159265;
+    }
+  }
+  std::cout << angle << std::endl;
+  return angle;
+}
+
+void MapWidget::drawAllGarage(QPainter& painter)
+{
+  int width = this->width(), height = this->height();
   QPixmap garageIcon(":/icon/garage.png");
   for (const Garaz& garage : getRobotManagerData()->garageVector())
   {
@@ -44,23 +78,38 @@ void MapWidget::paintEvent(QPaintEvent* paintEvent)
     int x = garage.WezWspY() / WIDTH * width - 0.5 * scaledGarageIcon.width(),
         y = garage.WezWspX() / HEIGHT * height
             - 0.5 * scaledGarageIcon.height();
+
+    double angle = getAngleInDegrees(garage.WezWspX(), garage.WezWspY(),
+        garage.WezWspWejX(), garage.WezWspWejY());
+
+    QMatrix transformMatrix;
+    transformMatrix.translate(0.5 * scaledGarageIcon.width(),
+        0.5 * scaledGarageIcon.height());
+    transformMatrix.rotate(angle);
+
+    scaledGarageIcon = scaledGarageIcon.transformed(transformMatrix);
+
     painter.drawPixmap(x, y, scaledGarageIcon);
     painter.drawText(x + 1.02 * scaledGarageIcon.width(),
         y + 1.02 * scaledGarageIcon.height(),
         QString("%1").arg(garage.WezGarazId()));
   }
+}
 
+void MapWidget::drawAllStorage(QPainter& painter)
+{
+  int width = this->width(), height = this->height();
   QPixmap storageIcon(":/icon/storage.png");
   for (const Magazyn& storage : getRobotManagerData()->storeVector())
   {
     QPixmap scaledStorageIcon = storageIcon.scaledToWidth(0.3 / WIDTH * width);
-    double angle = atan(
-        (storage.WezWspWejY() - storage.WezWspY())
-            / (storage.WezWspWejX() - storage.WezWspX())) * 180 / 3.14159265;
+    double angle = getAngleInDegrees(storage.WezWspX(), storage.WezWspY(),
+        storage.WezWspWejX(), storage.WezWspWejY());
+
     QMatrix transformMatrix;
     transformMatrix.translate(0.5 * scaledStorageIcon.width(),
         0.5 * scaledStorageIcon.height());
-    transformMatrix.rotate(-90 - angle);
+    transformMatrix.rotate(angle);
 
     int x = storage.WezWspY() / WIDTH * width - 0.5 * scaledStorageIcon.width(),
         y = storage.WezWspX() / HEIGHT * height
@@ -71,13 +120,23 @@ void MapWidget::paintEvent(QPaintEvent* paintEvent)
     painter.drawText(x + 1.05 * scaledStorageIcon.width(),
         y + 1.05 * scaledStorageIcon.height(),
         QString("%1").arg(storage.WezMagazynId()));
-    std::cout << angle << std::endl;
   }
+}
 
-  QWidget::paintEvent(paintEvent);
+void MapWidget::drawAllRobot(QPainter& painter)
+{
+  int width = this->width(), height = this->height();
+  QPixmap robotIcon(":/icon/robotMap.png");
+  for (const Robot& robot : getRobotManagerData()->robotVector())
+  {
+    QPixmap scaledRobotIcon = robotIcon.scaledToWidth(0.3 / WIDTH * width);
+    painter.drawPixmap(robot.WezWspY() / WIDTH * width,
+        robot.WezWspX() / HEIGHT * height, scaledRobotIcon);
+  }
 }
 
 void MapWidget::refreshDataViewed()
 {
-
+  repaint();
 }
+

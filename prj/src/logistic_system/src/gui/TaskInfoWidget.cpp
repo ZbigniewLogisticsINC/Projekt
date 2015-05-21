@@ -54,3 +54,7 @@ void TaskInfoWidget::updateSelectedRowNumber(const QModelIndex & current,
     m_ui.removeButton->setEnabled(true);
 }
 
+void TaskInfoWidget::refreshDataViewed()
+{
+
+}

@@ -21,4 +21,6 @@ void AddStorageDialog::setStorageFromDialog()
   m_store.ZmienCzyWolny(true);
   m_store.ZmienWspX(m_ui.xSpinBox->value());
   m_store.ZmienWspY(m_ui.ySpinBox->value());
+  m_store.ZmienWspWejX(m_ui.xEntrySpinBox->value());
+  m_store.ZmienWspWejY(m_ui.yEntrySpinBox->value());
 }

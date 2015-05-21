@@ -21,7 +21,7 @@ class StorageInfoWidget: public QWidget, public DataManager
     void setRobotManagerData(RobotManagerData* managerData);
     public slots:
       void showAddStorageDialog();
-
+      void refreshDataViewed();
     private slots:
       void updateSelectedRowNumber(const QModelIndex & current, const QModelIndex & previous);
       void removeSelected();

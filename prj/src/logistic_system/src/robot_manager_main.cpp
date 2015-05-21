@@ -12,6 +12,7 @@ int main(int argc, char* argv[])
 
   QApplication app(argc, argv);
   RobotManagerData* data = new RobotManagerData;
+  data->addRobot(Robot());
   LogisticSystemMainWindow mainWindow;
   mainWindow.setRobotManagerData(data);
   mainWindow.show();

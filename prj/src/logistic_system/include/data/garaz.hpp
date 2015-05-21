@@ -36,6 +36,8 @@ using namespace std;
 class Garaz {
 double wsp_x;  /*! zmienna typu int przechowujaca informacje o wsp. x garazu */
 double wsp_y;  /*! zmienna typu int przechowujaca informacje o wsp. y garazu */
+double wspWej_x;
+double wspWej_y;
 int id;  /*! zmienna typu int przechowujaca identyfikator garazu */
   
 public :
@@ -66,6 +68,10 @@ public :
  */
   const double & WezWspY() const { return wsp_y; }
 
+  const double & WezWspWejX() const { return wspWej_x; }
+
+  const double & WezWspWejY() const { return wspWej_y; }
+
 /*! 
  * \brief zwraca identyfikator (typu int) danego garazu.
  *
@@ -93,6 +99,12 @@ public :
  */
   void ZmienWspY(const double y)
   { wsp_y = y;}
+
+  void ZmienWspWejX(const double x)
+    { wspWej_x = x;}
+
+  void ZmienWspWejY(const double y)
+    { wspWej_y = y;}
 
 /*! 
  * \brief zmienia wartosc pola id struktury Garaz.

@@ -58,3 +58,8 @@ void StorageInfoWidget::removeSelected()
       m_ui.removeButton->setEnabled(false);
   }
 }
+
+void StorageInfoWidget::refreshDataViewed()
+{
+
+}

@@ -20,10 +20,14 @@ class TaskInfoWidget: public QWidget, public DataManager
 	public:
 		TaskInfoWidget(QWidget* parent = nullptr): QWidget(parent), m_currentRowSelected(-1) { init(); }
 		void setRobotManagerData(RobotManagerData* managerData);
+
+	public slots:
+	    void refreshDataViewed();
 	private slots:
 		void showAddTaskDialog();
 		void updateSelectedRowNumber(const QModelIndex & current, const QModelIndex & previous);
 		void removeSelected();
+
 
 	private:
 		void init();

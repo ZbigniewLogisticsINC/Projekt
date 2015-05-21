@@ -23,9 +23,12 @@ class GarageInfoWidget: public QWidget, public DataManager
     public slots:
       void showAddGarageDialog();
 
+    public slots:
+      void refreshDataViewed();
     private slots:
       void updateSelectedRowNumber(const QModelIndex & current, const QModelIndex & previous);
       void removeSelected();
+
     private:
       void init();
       void updateTotalStorageNumber()

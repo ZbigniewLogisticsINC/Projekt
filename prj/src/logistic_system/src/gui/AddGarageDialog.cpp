@@ -20,4 +20,6 @@ void AddGarageDialog::setGarageFromDialog()
   m_garage.ZmienGarazId(s_id++);
   m_garage.ZmienWspX(m_ui.xSpinBox->value());
   m_garage.ZmienWspY(m_ui.ySpinBox->value());
+  m_garage.ZmienWspWejX(m_ui.xEntrySpinBox->value());
+  m_garage.ZmienWspWejY(m_ui.yEntrySpinBox->value());
 }

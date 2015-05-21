@@ -57,3 +57,8 @@ void GarageInfoWidget::removeSelected()
       m_ui.removeButton->setEnabled(false);
   }
 }
+
+void GarageInfoWidget::refreshDataViewed()
+{
+
+}

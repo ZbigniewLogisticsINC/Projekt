@@ -41,7 +41,7 @@ int StorageModel::rowCount(const QModelIndex &parent) const
 
 int StorageModel::columnCount(const QModelIndex &parent) const
 {
-  return 3;
+  return 5;
 }
 QVariant StorageModel::headerData(int section, Qt::Orientation orientation,
     int role) const
@@ -58,6 +58,10 @@ QVariant StorageModel::headerData(int section, Qt::Orientation orientation,
           return tr("y coordinate");
         case 2:
           return tr("x coordinate");
+        case 3:
+          return tr("x entry coordinate");
+        case 4:
+          return tr("y entry coordinate");
       }
     }
     else
@@ -80,6 +84,10 @@ QVariant StorageModel::data(const QModelIndex &index, int role) const
         return m_managerData->storeVector()[index.row()].WezWspX();
       case 2:
         return m_managerData->storeVector()[index.row()].WezWspY();
+      case 3:
+        return m_managerData->storeVector()[index.row()].WezWspWejX();
+      case 4:
+        return m_managerData->storeVector()[index.row()].WezWspWejY();
     }
   return QVariant();
 }

@@ -29,7 +29,11 @@ void LogisticSystemMainWindow::setRobotManagerData(
 
 void LogisticSystemMainWindow::refreshDataViewed()
 {
-
+  m_ui.mapWidget->refreshDataViewed();
+  m_ui.taskWidget->refreshDataViewed();
+  m_ui.robotWidget->refreshDataViewed();
+  m_ui.storageInfoWidget->refreshDataViewed();
+  m_ui.garageInfoWidget->refreshDataViewed();
 }
 
 void LogisticSystemMainWindow::init()

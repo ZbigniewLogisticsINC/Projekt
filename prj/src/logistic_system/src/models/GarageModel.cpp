@@ -58,6 +58,10 @@ QVariant GarageModel::headerData(int section, Qt::Orientation orientation,
           return tr("y coordinate");
         case 2:
           return tr("x coordinate");
+        case 3:
+          return tr("x entry coordinate");
+        case 4:
+          return tr("y entry coordinate");
       }
     }
     else
@@ -80,6 +84,10 @@ QVariant GarageModel::data(const QModelIndex &index, int role) const
         return m_managerData->garageVector()[index.row()].WezWspX();
       case 2:
         return m_managerData->garageVector()[index.row()].WezWspY();
+      case 3:
+        return m_managerData->storeVector()[index.row()].WezWspWejX();
+      case 4:
+        return m_managerData->storeVector()[index.row()].WezWspWejY();
     }
   return QVariant();
 }
