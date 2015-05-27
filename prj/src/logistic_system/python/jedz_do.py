@@ -16,22 +16,47 @@ p=RosAriaDriver2(string3)
 x2=float(sys.argv[2])
 y2=float(sys.argv[3])
 
-p.ResetPose()
-
-def funkcja(p):
-	#Ustawienie się robota w kierunku celu.
+def obroc(p):
 	ustawiony = False
 	i=0
 	while (ustawiony == False):
 		xx=p.GetPose()
-		x1=xx[0]
-		y1=xx[1]
-		theta=xx[2]*3.1415/180
+		x1=xx[0]	#bierzaca pozycja x
+		y1=xx[1]	#bierzaca pozycja y
+		theta=xx[2]*3.1415/180	#bierzaca kat obrotu
 		print theta
 
-		kat=atan((y2-y1)/(x2-x1))
-		print kat
+		if abs(x2-x1)<0.1:
+			if y2>y1:
+				print "y2>y1"			
+				kat=1.57
+			else: 
+				print "y2<y1"
+				kat=-1.57
+		else:
+			if abs(y2-y1)<0.1:
+				if x2<x1:
+					print "x2<x1"			
+					kat=3.1415
+				else: 
+					print "x2>x1"
+					kat=0
+			else:	
+				print "nic z pozostalych"
+				if y2<y1:		
+					kat=atan((y2-y1)/(x2-x1))	
+				else:
+					kat=atan((y2-y1)/(x2-x1))
+					kat=1.57-kat
+				if x2<x1 and y2<y1:
+					kat=atan((y2-y1)/(x2-x1))+3.1415
+				
+				
 
+		print "kat "
+		print kat
+		print "theta "
+		print theta
 		if kat > theta:
 			time = kat-theta
 			p.SetSpeed(0,1,time)
@@ -49,25 +74,17 @@ def funkcja(p):
 			ustawiony = True
 		p.SetSpeed(0,0,0.5)
 
+def funkcja(p):
+	#Ustawienie się robota w kierunku celu.
+	obroc(p);
 
 	#Jazada w kierunku celu.
 	print p.GetPose()
 	xx=p.GetPose()
-	x3=xx[0]
-	y3=xx[1]
+	x1=xx[0]
+	y1=xx[1]
 	d=sqrt(pow(x2-x1,2)+pow(y2-y1,2))
 	p.GoTo(d)
-'''
-	dd=-9999
-	while (d-dd > 0.05): #or abs(x2-x1) > 0.05 or abs(y2-y1) > 0.05:
-		xx=p.GetPose()
-		x1=xx[0]
-		y1=xx[1]
-		p.SetSpeed(1,0,0.5)
-		p.SetSpeed(0,0,0.1)
-		dd=sqrt(pow(x3-x1,2)+pow(y3-y1,2))
-		print p.GetPose()
-'''
 	
 	#p.SetSpeed(0,0,0)
 				
