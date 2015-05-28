@@ -2,6 +2,7 @@
 #-*- coding: latin2 -*-
 
 import sys
+import os
 import roslib
 import rospy
 from geometry_msgs.msg import Twist, Pose
@@ -114,8 +115,8 @@ def kalibruj(p, wspx, wspy): # uzywa funkcji liego i oczytow z sonaru zeby skali
 	odczyts = p.ReadSonar()
 	s1 = odczyts[0][1]
 	s2 = odczyts[7][1]
-	while abs(s1-s2)>0.001:
-	 if s1>s2:
+	while abs(abs(s1)-abs(s2))>0.01:
+	 if abs(s1)<abs(s2):
 		p.SetSpeed(0.1,0,1)
 		p.SetSpeed(0,0,0.3)
 		p.SetSpeed(0,0.1,1)
@@ -136,11 +137,16 @@ def kalibruj(p, wspx, wspy): # uzywa funkcji liego i oczytow z sonaru zeby skali
 	 odczyts = p.ReadSonar()
 	 s1 = odczyts[0][1]
 	 s2 = odczyts[7][1]
+	 print s1
+  	 print s2
 
 
 
 if __name__ == '__main__':
-	jedz(p, x2, y2)   # Udanie się robota na wsp wjazdu do garazu.
-	jedz(p, xg, yg)       # Udanie się robota do wnetrza garazu.
+
+	string4 = 'rosrun logistic_system jedz_do.py {0} {1} {2}'.format(robot,x2,y2)
+	string5 = 'rosrun logistic_system jedz_do.py {0} {1} {2}'.format(robot,xg,yg)
+	os.system(string4)    # Udanie się robota na wsp wjazdu do garazu.
+	os.system(string5)       # Udanie się robota do wnetrza garazu.
 	kalibruj(p, xg, yg)   # kalibracja
-	jedz(p, x2, y2)   # wyjazd z garazu
+	os.system(string4)   # wyjazd z garazu
