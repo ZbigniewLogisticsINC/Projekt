@@ -5,54 +5,108 @@ import sys
 import roslib
 import rospy
 from geometry_msgs.msg import Twist, Pose
-from drive import RosAriaDriver
+from drive2 import RosAriaDriver2
 from math import atan, sqrt, pow
 
 robot = sys.argv[1]
 string1 = '/PIONIER{0}/RosAria/pose'.format(robot)
 string2 = '/PIONIER{0}/RosAria/cmd_vel'.format(robot)
-string3 = '/PIONIER{0}'.format(robot)	
-
-xwej=float(sys.argv[2]) # wsp punktu wjazdu do garazu
-ywej=float(sys.argv[3]) # ......
-xg=float(sys.argv[4])   # wsp garazu
-yg=float(sys.argv[5])   # ......
-p=RosAriaDriver(string3)
-
-def jedz(p, wspx, wspy):
+string3 = '/PIONIER{0}'.format(robot)
+p=RosAriaDriver2(string3)
 	
-	p=RosAriaDriver(string3)
-	#Ustawienie się robota w kierunku wsp celu
+x2=float(sys.argv[2])
+y2=float(sys.argv[3])
+xg=float(sys.argv[4])
+yg=float(sys.argv[5])
+
+def obroc(p):
+	xx=p.GetPose()
+	x1=xx[0]	#bierzaca pozycja x
+	y1=xx[1]	#bierzaca pozycja y
+	theta=xx[2]*3.1415/180	#bierzaca kat obrotu
+	print theta
+
+	if abs(x2-x1)<0.1:
+		if y2>y1:
+			print "y2>y1"			
+			kat=1.57
+		else: 
+			print "y2<y1"
+			kat=-1.57
+	else:
+		if abs(y2-y1)<0.1:
+			if x2<x1:
+				print "x2<x1"			
+				kat=3.1415
+			else: 
+				print "x2>x1"
+				kat=0
+		else:	
+			
+			if y2<y1:
+				if x2<x1:
+					print "y2<y1 x2<x1"							
+					kat=atan((y2-y1)/(x2-x1))
+					kat=kat-3.1415
+					
+				else:
+					print "y2<y1 x2>x1"	
+					kat=atan((y2-y1)/(x2-x1))
+			else:
+				if x2<x1:
+					print "y2>y1 x2<x1"								
+					kat=atan((y2-y1)/(x2-x1))
+					kat=kat+3.1415
+				else:
+					print "y2>y1 x2>x1"	
+					kat=atan((y2-y1)/(x2-x1))
+						
+
 	ustawiony = False
-	while ustawiony == True:
+	i=0
+	while (ustawiony == False):
 		xx=p.GetPose()
-		x1=xx[0]
-		y1=xx[1]
-		theta=xx[2]*3.1415/180	
-		kat=atan((wspx-y1)/(wspy-x1))
-	
+		x1=xx[0]	#bierzaca pozycja x
+		y1=xx[1]	#bierzaca pozycja y
+		theta=xx[2]*3.1415/180	#bierzacy kat obrotu
 		if kat > theta:
 			time = kat-theta
-			p.SetSpeed(0,1,time)
-			p.SetSpeed(0,0,0)
+			if time > 3.1415:
+				time = 6.283 - time
+				p.SetSpeed(0,-1,time)
+				p.SetSpeed(0,0,0)
+			else:
+				p.SetSpeed(0,1,time)
+				p.SetSpeed(0,0,0)
 		else:
 			time = theta-kat
-			p.SetSpeed(0,-1,time)
-			p.SetSpeed(0,0,0)
-		
+			if time > 3.1415:
+				time = 6.283 - time
+				p.SetSpeed(0,1,time)
+				p.SetSpeed(0,0,0)
+			else:
+				p.SetSpeed(0,-1,time)
+				p.SetSpeed(0,0,0)
+
+		#print p.ReadSonar()
 		xx=p.GetPose()
 		theta2=xx[2]*3.1415/180
-
-		if theta == theta2:
+		print theta2
+		if (abs(theta - theta2) < 0.0001):
 			ustawiony = True
+		p.SetSpeed(0,0,0.5)
 
-	#Jazda w kierunku celu.
+def funkcja(p):
+	#Ustawienie się robota w kierunku celu.
+	obroc(p);
+
+	#Jazada w kierunku celu.
+	print p.GetPose()
 	xx=p.GetPose()
 	x1=xx[0]
 	y1=xx[1]
-	d=sqrt(pow(wspx-x1,2)+pow(wspy-y1,2))
-	SetSpeed(1,0,d)
-	SetSpeed(0,0,0)
+	d=sqrt(pow(x2-x1,2)+pow(y2-y1,2))
+	p.GoTo(d)
 
 def kalibruj(p, wspx, wspy): # uzywa funkcji liego i oczytow z sonaru zeby skalibrowac robota
 
@@ -60,7 +114,7 @@ def kalibruj(p, wspx, wspy): # uzywa funkcji liego i oczytow z sonaru zeby skali
 	odczyts = p.ReadSonar()
 	s1 = odczyts[0][1]
 	s2 = odczyts[7][1]
-	while s1!=s2:
+	while abs(s1-s2)>0.001:
 	 if s1>s2:
 		p.SetSpeed(0.1,0,1)
 		p.SetSpeed(0,0,0.3)
@@ -86,7 +140,7 @@ def kalibruj(p, wspx, wspy): # uzywa funkcji liego i oczytow z sonaru zeby skali
 
 
 if __name__ == '__main__':
-	jedz(p, xwej, ywej)   # Udanie się robota na wsp wjazdu do garazu.
+	jedz(p, x2, y2)   # Udanie się robota na wsp wjazdu do garazu.
 	jedz(p, xg, yg)       # Udanie się robota do wnetrza garazu.
 	kalibruj(p, xg, yg)   # kalibracja
-	jedz(p, xwej, ywej)   # wyjazd z garazu
+	jedz(p, x2, y2)   # wyjazd z garazu
