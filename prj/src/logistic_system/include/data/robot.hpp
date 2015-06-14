@@ -115,7 +115,7 @@ public :
 /*! 
  * \brief zmienia wartosc pola id struktury Robot.
  *
- * \param      b  -  staly wskaznik typu int do argumentu id
+ * \param Id  -  nowy identyfikator robota
  *
  */
   void ZmienRobotId(const int& Id)

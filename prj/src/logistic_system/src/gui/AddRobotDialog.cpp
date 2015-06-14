@@ -13,11 +13,6 @@ void AddRobotDialog::init()
   connect(this, SIGNAL(accepted()), this, SLOT(setRobotInfo()));
 }
 
-void AddRobotDialog::refreshDataViewed()
-{
-
-}
-
 void AddRobotDialog::fillGarageCombo()
 {
   for (int i = 0; i < m_managerData->garageVector().size(); i++)

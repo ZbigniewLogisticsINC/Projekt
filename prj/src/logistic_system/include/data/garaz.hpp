@@ -34,10 +34,10 @@ using namespace std;
  */
 
 class Garaz {
-double wsp_x;  /*! zmienna typu int przechowujaca informacje o wsp. x garazu */
-double wsp_y;  /*! zmienna typu int przechowujaca informacje o wsp. y garazu */
-double wspWej_x;
-double wspWej_y;
+double wsp_x;  /*! zmienna typu double przechowujaca informacje o wsp. x garazu */
+double wsp_y;  /*! zmienna typu double przechowujaca informacje o wsp. y garazu */
+double wspWej_x; /*! zmienna typu double przechowująca informacje o współrzednej x wejścia garażu */
+double wspWej_y; /*! zmienna typu double przechowująca informacje o współrzednej y wejścia garażu */
 int id;  /*! zmienna typu int przechowujaca identyfikator garazu */
   
 public :
@@ -68,8 +68,20 @@ public :
  */
   const double & WezWspY() const { return wsp_y; }
 
+
+  /*!
+   * \brief Umozliwia dostep do prywatnego argumentu (typu double) wsp_y struktury Garaz.
+   *
+   * \return zwraca wsp y danego garazu.
+   */
   const double & WezWspWejX() const { return wspWej_x; }
 
+
+  /*!
+   * \brief Umozliwia dostep do prywatnego argumentu (typu double) wsp_y struktury Garaz.
+   *
+   * \return zwraca wsp y danego garazu.
+   */
   const double & WezWspWejY() const { return wspWej_y; }
 
 /*! 
@@ -100,16 +112,24 @@ public :
   void ZmienWspY(const double y)
   { wsp_y = y;}
 
+  /*!
+   * \brief Metoda pozwalająca zmienić współrzędną x garażu
+   * \param x - nowa współrzędna x garażu
+   */
   void ZmienWspWejX(const double x)
     { wspWej_x = x;}
 
+  /*!
+   * \brief Metoda pozwalająca zmienić współrzędną y garażu
+   * \param y - nowa współrzędna y garażu
+   */
   void ZmienWspWejY(const double y)
     { wspWej_y = y;}
 
 /*! 
  * \brief zmienia wartosc pola id struktury Garaz.
  *
- * \param      b  -  staly wskaznik typu int do argumentu id
+ * \param Id - argument id
  *
  */
   void ZmienGarazId(const int Id)
