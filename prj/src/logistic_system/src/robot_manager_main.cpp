@@ -8,8 +8,6 @@
 int main(int argc, char* argv[])
 {
   ros::init(argc, argv, "robot_manager");
-  ros::NodeHandle nh;
-
   QApplication app(argc, argv);
   RobotManagerData* data = new RobotManagerData;
   data->addRobot(Robot());

@@ -20,7 +20,7 @@
 
 #include <cstdio>
 #include <cstdlib>
-#include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -33,96 +33,104 @@ using namespace std;
  */
 
 class Robot {
-double wsp_x;  /*! zmienna typu double przechowujaca informacje o biezacej wsp. x robota */
-double wsp_y;  /*! zmienna typu double przechowujaca informacje o biezacej wsp. y robota */
-int id;  /*! zmienna typu int przechowujaca identyfikator robota */
-bool czy_wolny; /*! zmienna typu bool przechowujaca informacje o dostepnosci danego robota */
-int garazId;
+  double wsp_x;  /*! zmienna typu double przechowujaca informacje o biezacej wsp. x robota */
+  double wsp_y;  /*! zmienna typu double przechowujaca informacje o biezacej wsp. y robota */
+  double orientacja;
+  int id;  /*! zmienna typu int przechowujaca identyfikator robota */
+  bool czy_wolny; /*! zmienna typu bool przechowujaca informacje o dostepnosci danego robota */
+  int garazId;
 public :
 
-/*! 
- * \brief Konstruktor elementow dla struktury Robot.
- *
- * Wstepnie deklaruje wartosci zapisane do parametrow struktury Robot
- * 0 dla zmiennych typu double i int oraz TRUE dla zmiennej typu bool
- */
+  /*! 
+   * \brief Konstruktor elementow dla struktury Robot.
+   *
+   * Wstepnie deklaruje wartosci zapisane do parametrow struktury Robot
+   * 0 dla zmiennych typu double i int oraz TRUE dla zmiennej typu bool
+   */
   Robot() { wsp_x = wsp_y = 0; id = 0; czy_wolny = 1;garazId = 0;}
 
-//WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-//Funkcje dostepu do zmiennych struktury Robot
+  //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+  //Funkcje dostepu do zmiennych struktury Robot
 
-/*! 
- * \brief Umozliwia dostep do prywatnego argumentu (typu double) wsp_x struktury Robot.
- *
- * \return zwraca biezaca wsp x robota.
- */
+  /*! 
+   * \brief Umozliwia dostep do prywatnego argumentu (typu double) wsp_x struktury Robot.
+   *
+   * \return zwraca biezaca wsp x robota.
+   */
   const double & WezWspX() const { return wsp_x; }
 
-/*! 
- * \brief Umozliwia dostep do prywatnego argumentu (typu duoble) wsp_y struktury Robot.
- *
- * \return zwraca biezaca wsp y robota. 
- */
+  /*! 
+   * \brief Umozliwia dostep do prywatnego argumentu (typu duoble) wsp_y struktury Robot.
+   *
+   * \return zwraca biezaca wsp y robota. 
+   */
   const double & WezWspY() const { return wsp_y; }
 
-/*! 
- * \brief Umozliwia dostep do prywatnego argumentu (typu bool) czy_wolny struktury Robot.
- *
- * \return zwraca parametr dostepnosci danego robota. 
- */
+  /*! 
+   * \brief Umozliwia dostep do prywatnego argumentu (typu bool) czy_wolny struktury Robot.
+   *
+   * \return zwraca parametr dostepnosci danego robota. 
+   */
   const bool & WezCzyWolny() const { return czy_wolny; }
 
-/*! 
- * \brief zwraca identyfikator (typu int) danego robota.
- *
- * \return Umozliwia dostep do numeru identyfikacyjnego danego robota.
- */
+  /*! 
+   * \brief zwraca identyfikator (typu int) danego robota.
+   *
+   * \return Umozliwia dostep do numeru identyfikacyjnego danego robota.
+   */
   const int & WezRobotId() const { return id; }
 
 
   const int& WezGarazId() const { return garazId; }
 
-//WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-// Funkcje zmieniajace wartosci zmiennych w strukturze Robot
+  //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+  // Funkcje zmieniajace wartosci zmiennych w strukturze Robot
 
-/*! 
- * \brief zmienia wartosc pola wsp_x struktury Robot.
- *
- * \param      x  -  staly wskaznik typu double do argumentu wsp_x
- *
- */
+  /*! 
+   * \brief zmienia wartosc pola wsp_x struktury Robot.
+   *
+   * \param      x  -  staly wskaznik typu double do argumentu wsp_x
+   *
+   */
   void ZmienWspX(const double& x)
   { wsp_x = x;}
 
-/*! 
- * \brief zmienia wartosc pola wsp_y struktury Robot.
- *
- * \param      y  -  staly wskaznik typu double do argumentu wsp_y
- *
- */
+  /*! 
+   * \brief zmienia wartosc pola wsp_y struktury Robot.
+   *
+   * \param      y  -  staly wskaznik typu double do argumentu wsp_y
+   *
+   */
   void ZmienWspY(const double& y)
   { wsp_y = y;}
 
-/*! 
- * \brief zmienia wartosc pola czy_wolny struktury Robot.
- *
- * \param      wsp  -  staly wskaznik typu bool do argumentu czy_wolny 
- *
- */
+  /*! 
+   * \brief zmienia wartosc pola czy_wolny struktury Robot.
+   *
+   * \param      wsp  -  staly wskaznik typu bool do argumentu czy_wolny 
+   *
+   */
   void ZmienCzyWolny(const bool wsp)
   { czy_wolny = wsp;}
 
-/*! 
- * \brief zmienia wartosc pola id struktury Robot.
- *
- * \param Id  -  nowy identyfikator robota
- *
- */
+  /*! 
+   * \brief zmienia wartosc pola id struktury Robot.
+   *
+   * \param Id  -  nowy identyfikator robota
+   *
+   */
   void ZmienRobotId(const int& Id)
   { id = Id;}
 
 
   void ZmienGarazId(const int& id) { garazId = id; }
+
+  /*!
+   * \brief Metoda pozwalająca aktualizować dane robota na podstawie pliku
+   * 
+   */
+
+  bool updateCoordsFromFile(std::ifstream& file);
 };
 
 
@@ -142,7 +150,7 @@ public :
  *   Wczytywany argument musi wygladac nastepujaco:
  \verbatim
 
-    wsp_x   wsp_y   id 
+ wsp_x   wsp_y   id 
 
  \endverbatim
  *
@@ -165,11 +173,11 @@ istream & operator >> ( istream & StrmWe, Robot & R);
  *   operator << dla pierwszego argumentu klasy ostream umozliwi wypisanie wartosci
  *   klasy Robot na stdout.
  *   Wyswietlany argument wyglada nastepujaco:
-  \verbatim
+ \verbatim
 
-    wsp_x   wsp_y   id   czy_wolny
+ wsp_x   wsp_y   id   czy_wolny
 
-  \endverbatim
+ \endverbatim
  *
  *   \return Zwraca referencje do pierwszego parametru klasy ostream
  *

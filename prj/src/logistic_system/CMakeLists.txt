@@ -8,7 +8,9 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  #nav_msgs
   message_generation
+  #rosaria
   )
 
 find_package(Qt4 REQUIRED)

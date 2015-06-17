@@ -17,6 +17,25 @@
 
 #include "robot.hpp"
 
+
+bool Robot::updateCoordsFromFile(std::ifstream& file)
+{
+  if(!file)
+    return false;
+  double x,y,orient;
+  file >> x>> y >> orient;
+  if(file)
+    {
+      wsp_x = x;
+      wsp_y = y;
+      orientacja = orient;
+    }
+  return file.good();
+}
+
+
+
+
 istream & operator >> ( istream & StrmWe, Robot & R)
 {  
  double zm1;

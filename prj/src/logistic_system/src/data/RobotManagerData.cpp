@@ -163,3 +163,15 @@ bool RobotManagerData::removeRobotId(unsigned int id)
     }
   return false;
 }
+
+void RobotManagerData::update(const std::string& dirPath)
+{
+  for(int i = 0; i < m_robotVector.size(); i++)
+    {
+      std::ifstream file(dirPath);
+      m_robotVector[i].updateCoordsFromFile(file);
+    }
+  
+  std::cout<<dirPath<<std::endl;
+  emit dataUpdated();
+}

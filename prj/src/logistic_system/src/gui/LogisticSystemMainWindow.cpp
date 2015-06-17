@@ -9,6 +9,8 @@
 #include "AboutRobotManagerDialog.hpp"
 #include <QMessageBox>
 #include <QCloseEvent>
+#include <thread>
+
 
 LogisticSystemMainWindow::LogisticSystemMainWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -25,6 +27,8 @@ void LogisticSystemMainWindow::setRobotManagerData(
   m_ui.mapWidget->setRobotManagerData(managerData);
   m_ui.robotWidget->setRobotManagerData(managerData);
   DataManager::setRobotManagerData(managerData);
+  connect(m_managerData, SIGNAL(dataUpdated()), 
+	  this, SLOT(refreshDataViewed()));
 }
 
 void LogisticSystemMainWindow::refreshDataViewed()
@@ -39,8 +43,12 @@ void LogisticSystemMainWindow::refreshDataViewed()
 void LogisticSystemMainWindow::init()
 {
   m_ui.setupUi(this);
+  m_rosTimer = new QTimer(this);
   connect(m_ui.actionAbout, SIGNAL(triggered()), this,
-      SLOT(showAboutWndDialog()));
+	  SLOT(showAboutWndDialog()));
+  connect(m_rosTimer, SIGNAL(timeout()), this,
+	  SLOT(onUpdateROS()));
+  m_rosTimer->start(100);
 }
 
 void LogisticSystemMainWindow::closeEvent(QCloseEvent* closeEvent)
@@ -57,4 +65,12 @@ void LogisticSystemMainWindow::showAboutWndDialog()
 {
   AboutRobotManagerDialog dialog(this);
   dialog.exec();
+}
+
+
+void LogisticSystemMainWindow::onUpdateROS()
+{
+  //ros::spinOnce();
+  m_managerData->update("asdads");
+   
 }

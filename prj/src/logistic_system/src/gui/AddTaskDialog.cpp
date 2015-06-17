@@ -35,6 +35,10 @@ void AddTaskDialog::refreshDataViewed()
   for (std::vector<Magazyn>::const_iterator it = data->storeVector().begin();
       it != data->storeVector().end(); it++)
     m_ui.startStorageCombo->addItem(tr("%0").arg(it->WezMagazynId()));
+
+  for (std::vector<Robot>::const_iterator it = data->robotVector().begin();
+       it != data->robotVector().end(); it++)
+    m_ui.robotCombo->addItem(tr("%0").arg(it->WezRobotId()));
 }
 
 void AddTaskDialog::refreshDestCombo(QString newValue)
