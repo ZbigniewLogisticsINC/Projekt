@@ -7,7 +7,8 @@ wspolrzedna x, wspolrzedna y oraz kat obrotu.
 Nastepnie zapisuje te dane w pliku podanym jako
 argument argv[2] wywolania programu.
 Wywolanie pliku tylko z argumentami argv[1] argv[2]
-gdzie argv[1] to nazwa robota
+gdzie argv[1] to nazwa robota, argv[2] to sciezka
+pliku docelowego (bufora).
 """
 import sys
 import roslib
