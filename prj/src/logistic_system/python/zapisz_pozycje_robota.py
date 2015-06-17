@@ -19,7 +19,7 @@ from drive2 import RosAriaDriver2
 robot = sys.argv[1]
 
 """pomocniczy string uzyty przy inicjacji robota"""
-nazwa_robota = '/{0}'.format(robot)
+nazwa_robota = '/PIONIER{0}'.format(robot)
 
 """Stworzenie obiektu klasy RosAriaDriver."""
 p=RosAriaDriver2(nazwa_robota)
