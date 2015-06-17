@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 #-*- coding: latin2 -*-
 
+'''
+Plik umożliwia przemieszczenie robota z aktualnej pozycji do punktu celu podanego w argumentach wywołania.
+'''
+
 import sys
 import roslib
 import rospy
@@ -11,22 +15,21 @@ from math import atan, sqrt, pow
 '''
 Obsługa argumentów wywołania skryptu.
 
-#argument 1: numer robota (zostaje zkonkatenowany do zmiennych typu string)
+#argument 1: nazwa robota (zostaje zkonkatenowany do zmiennych typu string)
 #argument 2: współrzędna x punktu celu
 #argument 3: współrzędna y punkty celu
+#argument 4: definiuje czy robot ma ustawić się przed paczkę lub nie (0 jeśli jedzie do miejsca, 1 jeśli jedzie po paczkę)
 
 '''
 robot = sys.argv[1]	
-string1 = '/PIONIER{0}/RosAria/pose'.format(robot)
-string2 = '/PIONIER{0}/RosAria/cmd_vel'.format(robot)
-string3 = '/PIONIER{0}'.format(robot)	
+string = '/{0}'.format(robot)	
 x2=float(sys.argv[2])
 y2=float(sys.argv[3])
 
 '''
 Stworzenie obiektu klasy RosAriaDriver.
 '''
-p=RosAriaDriver(string3)
+p=RosAriaDriver(string)
 
 '''
 Definicja funkcja obracającej robota.
@@ -142,7 +145,11 @@ def funkcja(p):
 	xx=p.GetPose()
 	x1=xx[0]
 	y1=xx[1]
-	d=sqrt(pow(x2-x1,2)+pow(y2-y1,2))
+	paczka = float(sys.argv[4])
+	if paczka == 1:
+		d=sqrt(pow(x2-x1,2)+pow(y2-y1,2)) - 0.4
+	else:
+		d=sqrt(pow(x2-x1,2)+pow(y2-y1,2))
 	p.GoTo(d)	#Jazda robota na wprost przez odległość d, wykorzystuje się metodę klasy RosAriaDrier GetPose().
 	
 if __name__ == '__main__':
