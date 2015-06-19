@@ -16,8 +16,16 @@ import rospy
 from geometry_msgs.msg import Pose
 from drive2 import RosAriaDriver2
 
+print sys.argv
+
+if(len(sys.argv) not in [3]):
+    exit(-1);
+
 """zmienna definujaca numer poruszanego robota (liczba naturalna w przedziale <1,6>)"""
 robot = sys.argv[1]
+
+if(robot not in range(1,7)):
+    exit(-2)
 
 """pomocniczy string uzyty przy inicjacji robota"""
 nazwa_robota = '/PIONIER{0}'.format(robot)

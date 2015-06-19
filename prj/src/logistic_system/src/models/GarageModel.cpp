@@ -11,6 +11,7 @@ void GarageModel::setRobotManagerData(RobotManagerData* data)
 {
   beginResetModel();
   DataManager::setRobotManagerData(data);
+  connect(m_managerData, SIGNAL(dataUpdated()), this, SLOT(onDataUpdated()));
   endResetModel();
 }
 
@@ -64,9 +65,8 @@ QVariant GarageModel::headerData(int section, Qt::Orientation orientation,
           return tr("y entry coordinate");
       }
     }
-    else
-      if (orientation == Qt::Vertical)
-        return section + 1;
+    else if (orientation == Qt::Vertical)
+      return section + 1;
   }
   return QVariant();
 }
@@ -91,3 +91,4 @@ QVariant GarageModel::data(const QModelIndex &index, int role) const
     }
   return QVariant();
 }
+

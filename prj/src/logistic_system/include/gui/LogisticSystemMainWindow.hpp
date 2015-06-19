@@ -7,7 +7,7 @@
 
 #include "RobotManagerDataObject.hpp"
 #include "DataManager.hpp"
-
+#include "UpdateRobotDataThread.hpp"
 
 /*!
  * \brief Główne okno aplikacji dyspozytora
@@ -58,7 +58,13 @@ private:
    */
   QTimer* m_rosTimer;
 
-  ros::NodeHandle nh;
+  QTimer* m_taskManagerTimer;
+
+  //ros::NodeHandle nh;
+
+  UpdateRobotDataThread* m_rosUpdateThread;
+
+  QMap<unsigned, QThread* > m_taskThreadsMap;
 
 private slots:
 
@@ -71,6 +77,10 @@ private slots:
    * \brief Slot wywoływany aby zaktualizować rzeczy z ROS
    */
   void onUpdateROS();
+
+  void runNextTasks();
+
+  void onTaskCompleted(unsigned taskId);
 };
 
 #endif

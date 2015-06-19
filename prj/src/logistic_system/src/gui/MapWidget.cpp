@@ -130,8 +130,8 @@ void MapWidget::drawAllRobot(QPainter& painter)
   for (const Robot& robot : getRobotManagerData()->robotVector())
   {
     QPixmap scaledRobotIcon = robotIcon.scaledToWidth(0.3 / WIDTH * width);
-    painter.drawPixmap(robot.WezWspY() / WIDTH * width,
-        robot.WezWspX() / HEIGHT * height, scaledRobotIcon);
+    painter.drawPixmap(robot.WezWspX() / WIDTH * width,
+        robot.WezWspY() / HEIGHT * height, scaledRobotIcon);
   }
 }
 

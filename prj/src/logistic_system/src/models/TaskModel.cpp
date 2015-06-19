@@ -46,7 +46,7 @@ int TaskModel::rowCount(const QModelIndex &parent) const
 
 int TaskModel::columnCount(const QModelIndex &parent) const
 {
-  return 4;
+  return 5;
 }
 
 QVariant TaskModel::data(const QModelIndex &index, int role) const
@@ -64,6 +64,12 @@ QVariant TaskModel::data(const QModelIndex &index, int role) const
         return m_managerData->tasksVector()[index.row()].WezCelMagazynId();
       case 3:
         return m_managerData->tasksVector()[index.row()].WezPreferowanegoRobotaId();
+      case 4:
+      {
+        QString statusTab[] = { tr("Waiting"), tr("Running"), tr(
+            "Completed") };
+        return statusTab[m_managerData->tasksVector()[index.row()].WezStatus()];
+      }
     }
   return QVariant();
 }
@@ -85,11 +91,12 @@ QVariant TaskModel::headerData(int section, Qt::Orientation orientation,
           return tr("Destination Storage");
         case 3:
           return tr("Preffered Robot");
+        case 4:
+          return tr("Status");
       }
     }
-    else
-      if (orientation == Qt::Vertical)
-        return section + 1;
+    else if (orientation == Qt::Vertical)
+      return section + 1;
   }
   return QVariant();
 }

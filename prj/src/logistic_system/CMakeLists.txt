@@ -8,9 +8,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
-  #nav_msgs
   message_generation
-  #rosaria
   )
 
 find_package(Qt4 REQUIRED)
@@ -46,6 +44,12 @@ qt4_add_resources(RCC_SRCS ${RSRCS})
 add_executable(robot_manager 
   ${robot_manager_HEADERS_MOC} ${SRCS} ${robot_manager_FORMS_HEADERS} ${RCC_SRCS} )
 target_link_libraries(robot_manager ${QT_LIBRARIES} ${catkin_LIBRARIES})
+
+add_custom_command(TARGET robot_manager POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                   ${CMAKE_CURRENT_SOURCE_DIR}/python $<TARGET_FILE_DIR:robot_manager>
+		   COMMAND echo $<TARGET_FILE_DIR:robot_manager>
+		   COMMAND echo  /python)
 
 # Doxygen
 find_package(Doxygen)

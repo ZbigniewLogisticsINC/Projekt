@@ -6,6 +6,8 @@
  */
 
 #include "RobotManagerData.hpp"
+#include <cstdlib>
+#include <sstream>
 
 RobotManagerData::RobotManagerData(QObject* parent)
     : QObject(parent)
@@ -75,6 +77,15 @@ Garaz* RobotManagerData::findGarageId(unsigned int id)
   std::vector<Garaz>::iterator it = m_garageVector.begin();
   for (; it != m_garageVector.end(); it++)
     if (it->WezGarazId() == id)
+      return &*it;
+  return nullptr;
+}
+
+Zadanie* RobotManagerData::findTaskId(unsigned id)
+{
+  std::vector<Zadanie>::iterator it = m_taskVector.begin();
+  for (; it != m_taskVector.end(); it++)
+    if (it->WezId() == id)
       return &*it;
   return nullptr;
 }
@@ -164,14 +175,38 @@ bool RobotManagerData::removeRobotId(unsigned int id)
   return false;
 }
 
+bool RobotManagerData::changeTaskStatusOnCompletedId(unsigned id)
+{
+  Zadanie* task = findTaskId(id);
+  if (task == nullptr)
+    return false;
+
+  task->ZmienStatus(Zadanie::UKONCZONO);
+
+  return true;
+}
+
+void RobotManagerData::setTaskStarted(unsigned taskId)
+{
+
+}
+
 void RobotManagerData::update(const std::string& dirPath)
 {
-  for(int i = 0; i < m_robotVector.size(); i++)
-    {
-      std::ifstream file(dirPath);
-      m_robotVector[i].updateCoordsFromFile(file);
-    }
-  
-  std::cout<<dirPath<<std::endl;
+  for (int i = 0; i < m_robotVector.size(); i++)
+  {
+    const Robot& robot = m_robotVector[i];
+    std::ostringstream ossCommand, ossOutputFile;
+    ossOutputFile << dirPath << robot.WezNazwe();
+    ossCommand
+        << "python /home/mochman/politechnika/projekt_zespolowy/prj/src/logistic_system/python/zapisz_pozycje_robota.py "
+        << robot.WezNazwe() << " " + ossOutputFile.str();
+//    std::cout << ossOutputFile.str() << ":" << ossCommand.str() << ":"
+//        << system(ossCommand.str().c_str()) << std::endl;
+    system(ossCommand.str().c_str());
+    std::ifstream file(ossOutputFile.str());
+    m_robotVector[i].updateCoordsFromFile(file);
+  }
+
   emit dataUpdated();
 }

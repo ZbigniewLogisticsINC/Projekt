@@ -16,6 +16,8 @@
  */
 class RobotModel: public QAbstractTableModel, public DataManager
 {
+    Q_OBJECT
+
   public:
 
     /*!
@@ -75,6 +77,9 @@ class RobotModel: public QAbstractTableModel, public DataManager
      * \return Dane określone przez indeks
      */
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+
+    private slots:
+      void onDataUpdated() { emit dataChanged(index(0,0),index(rowCount(),columnCount())); }
 };
 
 

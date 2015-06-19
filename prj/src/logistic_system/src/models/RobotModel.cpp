@@ -11,6 +11,7 @@ void RobotModel::setRobotManagerData(RobotManagerData* data)
 {
   beginResetModel();
   DataManager::setRobotManagerData(data);
+  connect(m_managerData, SIGNAL(dataUpdated()), this, SLOT(onDataUpdated()));
   endResetModel();
 }
 
@@ -51,15 +52,14 @@ QVariant RobotModel::headerData(int section, Qt::Orientation orientation,
   {
     if (orientation == Qt::Horizontal)
     {
-      QString columns[5] = { tr("id"), tr("y coordinate"), tr("x coordinate"),
+      QString columns[5] = { tr("name"), tr("x coordinate"), tr("y coordinate"),
           tr("is free"), tr("garage id") };
       if (section < 5)
         return columns[section];
     }
   }
-  else
-    if (orientation == Qt::Vertical)
-      return section + 1;
+  else if (orientation == Qt::Vertical)
+    return section + 1;
 
   return QVariant();
 }
@@ -72,7 +72,7 @@ QVariant RobotModel::data(const QModelIndex &index, int role) const
     switch (index.column())
     {
       case 0:
-        return m_managerData->robotVector()[index.row()].WezRobotId();
+        return m_managerData->robotVector()[index.row()].WezNazwe().c_str();
       case 1:
         return m_managerData->robotVector()[index.row()].WezWspX();
       case 2:

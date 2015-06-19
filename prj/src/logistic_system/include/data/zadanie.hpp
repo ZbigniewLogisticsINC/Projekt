@@ -35,8 +35,16 @@ using namespace std;
 class Zadanie {
   public:
 
+    enum Status
+    {
+      OCZEKIWANIE,
+      W_TRAKCIE,
+      UKONCZONO
+    };
+
     Zadanie(int idZadania=-1,int startMagazyn=-1, int celMagazyn=-1,int preferowanyRobot=-1 )
-      :id(idZadania), start_magazyn_id(startMagazyn), cel_magazyn_id(celMagazyn), pref_robot(preferowanyRobot) { }
+      :id(idZadania), start_magazyn_id(startMagazyn), cel_magazyn_id(celMagazyn), pref_robot(preferowanyRobot),
+       status(OCZEKIWANIE) { }
 
     enum TypDanych{ START_MAGAZYN_ID,CEL_MAGAZYN_ID,PREF_ROBOT};
     /*!
@@ -60,12 +68,15 @@ class Zadanie {
     int WezPreferowanegoRobotaId() const { return pref_robot; }
     void ZmienPreferowanegoRobotaId(int nowyId)  { pref_robot = nowyId; }
     int WezId() const { return id; }
+    void ZmienStatus(Status nowyStatus) { status = nowyStatus; }
+    Status WezStatus() const { return status; }
     void ZmienId(int nowyId) { id = nowyId; }
   private:
     int start_magazyn_id; /*! zmienna typu int okreslajaca poczatkowy magazyn sciezki zadania */
     int cel_magazyn_id; /*! zmienna typu int okreslajaca koncowy magazyn sciezki zadania */
     int pref_robot; /*! zmienna typu int okreslajaca preferowanego robota do wykonania zadania */
     int id;
+    Status status; /*! zmienna typu bool określająca czy zadanie zostało już ukończone */
 };
 
 /*!

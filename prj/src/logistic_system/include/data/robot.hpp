@@ -83,6 +83,8 @@ public :
 
   const int& WezGarazId() const { return garazId; }
 
+  std::string WezNazwe() const;
+
   //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
   // Funkcje zmieniajace wartosci zmiennych w strukturze Robot
 

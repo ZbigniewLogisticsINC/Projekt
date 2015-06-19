@@ -6,7 +6,6 @@
  *
  */
 
-
 /*!
  * \file
  * \brief Definicje przeciazen dla klasy Robot
@@ -16,47 +15,61 @@
  */
 
 #include "robot.hpp"
+#include <sstream>
 
+std::string Robot::WezNazwe() const
+{
+  std::ostringstream ossName;
+
+  ossName << "PIONIER" << WezRobotId();
+
+  return ossName.str();
+}
 
 bool Robot::updateCoordsFromFile(std::ifstream& file)
 {
-  if(!file)
+  if (!file)
     return false;
-  double x,y,orient;
-  file >> x>> y >> orient;
-  if(file)
-    {
-      wsp_x = x;
-      wsp_y = y;
-      orientacja = orient;
-    }
+  double x, y, orient;
+  file >> x >> y >> orient;
+  if (file)
+  {
+    wsp_x = x;
+    wsp_y = y;
+    orientacja = orient;
+  }
   return file.good();
 }
 
+istream & operator >>(istream & StrmWe, Robot & R)
+{
+  double zm1;
+  int zm2;
+  StrmWe >> zm1;
+  if (StrmWe.fail())
+    return StrmWe;
+  R.ZmienWspX(zm1);
+  StrmWe >> zm1;
+  if (StrmWe.fail())
+    return StrmWe;
+  R.ZmienWspY(zm1);
+  StrmWe >> zm2;
+  if (StrmWe.fail())
+    return StrmWe;
+  R.ZmienRobotId(zm2);
 
-
-
-istream & operator >> ( istream & StrmWe, Robot & R)
-{  
- double zm1;
- int zm2;
-    StrmWe >> zm1;
-    if(StrmWe.fail()) return StrmWe;  R.ZmienWspX(zm1);
-    StrmWe >> zm1;
-    if(StrmWe.fail()) return StrmWe;  R.ZmienWspY(zm1);
-    StrmWe >> zm2;
-    if(StrmWe.fail()) return StrmWe;  R.ZmienRobotId(zm2);
- 
   return StrmWe;
 }
 
-
-ostream & operator << ( ostream & StrmWy, Robot R)
+ostream & operator <<(ostream & StrmWy, Robot R)
 {
- double x, y;
- bool w;
- int i;
- x=R.WezWspX(); y=R.WezWspY(); w=R.WezCzyWolny(); i=R.WezRobotId();
+  double x, y;
+  bool w;
+  int i;
+  x = R.WezWspX();
+  y = R.WezWspY();
+  w = R.WezCzyWolny();
+  i = R.WezRobotId();
   StrmWy << x << "  " << y << "  " << i << "  " << w;
   return StrmWy;
 }
