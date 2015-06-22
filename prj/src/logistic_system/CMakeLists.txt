@@ -28,11 +28,11 @@ generate_messages(DEPENDENCIES std_msgs)
 
 catkin_package()
 
-include_directories(include include/gui include/models include/data ${catkin_INCLUDE_DIRS})
+include_directories(include include/gui include/models include/data include/thread ${catkin_INCLUDE_DIRS})
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 file(GLOB FORMS ui/*.ui)
-file(GLOB QOBJECT_HEADERS  include/gui/*.hpp include/models/*Model.hpp include/data/RobotManagerData.hpp)
+file(GLOB QOBJECT_HEADERS  include/gui/*.hpp include/models/*Model.hpp include/thread/*.hpp include/data/RobotManagerData.hpp)
 file(GLOB_RECURSE SRCS src/*.cpp)
 file(GLOB RSRCS rsrc/*.qrc)
 

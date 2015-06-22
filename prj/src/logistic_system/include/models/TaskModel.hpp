@@ -84,7 +84,16 @@ class TaskModel: public QAbstractTableModel, public DataManager
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
   private:
+    /*!
+     * \brief Metoda inicjująca model
+     */
     void init();
+
+  private slots:
+  /*!
+   * \brief Slot obsługujący aktualizację danych
+   */
+    void onDataUpdated() { emit dataChanged(index(0,0),index(rowCount(),columnCount())); }
 
 };
 

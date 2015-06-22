@@ -17,7 +17,6 @@ void AddRobotDialog::fillGarageCombo()
 {
   for (int i = 0; i < m_managerData->garageVector().size(); i++)
   {
-    std::cout << "wchodzi\n";
     QString text = QString("%1").arg(
         m_managerData->garageVector()[i].WezGarazId());
     m_ui.comboBox->addItem(text);

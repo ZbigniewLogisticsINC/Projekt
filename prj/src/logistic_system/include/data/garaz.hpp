@@ -48,7 +48,7 @@ public :
  * Wstepnie deklaruje wartosci zapisane do parametrow struktury Garaz
  * 0 dla zmiennych typu double oraz dla zmiennej typu int
  */
-  Garaz() { wsp_x = wsp_y = 0; id = 0;}
+  Garaz() { wsp_x = wsp_y = 0; id = 0; wspWej_x = 0;wspWej_y = 0;}
 
 	
 //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
@@ -97,7 +97,7 @@ public :
 /*! 
  * \brief zmienia wartosc pola wsp_x struktury Garaz.
  *
- * \param      x  -  staly wskaznik typu double do argumentu wsp_x
+ * \param      x  -  stala referencje typu double do argumentu wsp_x
  *
  */
   void ZmienWspX(const double x)
@@ -106,7 +106,7 @@ public :
 /*! 
  * \brief zmienia wartosc pola wsp_y struktury Garaz.
  *
- * \param      y  -  staly wskaznik typu double do argumentu wsp_y
+ * \param      y  -  stala referencja typu double do argumentu wsp_y
  *
  */
   void ZmienWspY(const double y)

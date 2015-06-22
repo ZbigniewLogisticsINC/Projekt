@@ -90,6 +90,41 @@ Zadanie* RobotManagerData::findTaskId(unsigned id)
   return nullptr;
 }
 
+int RobotManagerData::findFreeRobotForTask(unsigned taskId)
+{
+  int ID = -1;
+  Magazyn *magazyn, *cel;
+  double najkrotsza_trasa = numeric_limits<double>::max(), trasa;
+
+  const std::vector<Zadanie>& listazadan = tasksVector();
+  const std::vector<Robot>& listarobotow = robotVector();
+
+  for (std::vector<Zadanie>::const_iterator it1 = listazadan.begin();
+      it1 != listazadan.end(); it1++)
+  {
+    if (it1->WezId() == taskId)
+    {
+      magazyn = findStoreId(it1->WezStartMagazynId());
+      cel = findStoreId(it1->WezCelMagazynId());
+      for (std::vector<Robot>::const_iterator it2 = listarobotow.begin();
+          it2 != listarobotow.end(); it2++)
+      {
+        if (it2->WezCzyWolny())
+        {
+          trasa = pow(it2->WezWspX() - magazyn->WezWspX(), 2) // nie trzeba sqrt, tylko dodatkowe obliczenia
+          + pow(it2->WezWspY() - magazyn->WezWspY(), 2)
+              + pow(magazyn->WezWspX() - cel->WezWspX(), 2)
+              + pow(magazyn->WezWspY() - cel->WezWspY(), 2);
+
+          if (trasa < najkrotsza_trasa)
+            ID = it2->WezRobotId();
+        }   //if
+      } //for
+    }   //if
+  } //for
+  return ID;
+}
+
 bool RobotManagerData::containsRobotId(unsigned int id) const
 {
   std::vector<Robot>::const_iterator it = m_robotVector.begin();
@@ -178,17 +213,38 @@ bool RobotManagerData::removeRobotId(unsigned int id)
 bool RobotManagerData::changeTaskStatusOnCompletedId(unsigned id)
 {
   Zadanie* task = findTaskId(id);
-  if (task == nullptr)
+  Robot* robot = findRobotId(task->WezRobot());
+  if (task == nullptr || robot == nullptr)
     return false;
 
   task->ZmienStatus(Zadanie::UKONCZONO);
-
+  task->ZmienRobot(-1);
+  robot->ZmienCzyWolny(true);
   return true;
 }
 
-void RobotManagerData::setTaskStarted(unsigned taskId)
+void RobotManagerData::runNextTasks(std::vector<unsigned>& runNextTasksId)
 {
+  for (int i = 0; i < m_taskVector.size(); i++)
+  {
+    Zadanie& task = m_taskVector[i];
+    if (task.WezStatus() == Zadanie::OCZEKIWANIE)
+    {
+      int robotId = findFreeRobotForTask(task.WezId());
+      std::cout << "Robot id: " << robotId << std::endl;
+      if (robotId >= 0)
+      {
+        Robot* robot = findRobotId(robotId);
+        if (robot != nullptr)
+          robot->ZmienCzyWolny(false);
+        runNextTasksId.push_back(task.WezId());
+        task.ZmienRobot(robotId);
+        task.ZmienStatus(Zadanie::W_TRAKCIE);
+      }
+    }
+  }
 
+  emit dataUpdated();
 }
 
 void RobotManagerData::update(const std::string& dirPath)

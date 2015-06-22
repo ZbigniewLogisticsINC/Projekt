@@ -16,7 +16,7 @@ import rospy
 from geometry_msgs.msg import Pose
 from drive2 import RosAriaDriver2
 
-print sys.argv
+#print sys.argv
 
 if(len(sys.argv) not in [3]):
     exit(-1);

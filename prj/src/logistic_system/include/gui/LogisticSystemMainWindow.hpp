@@ -8,7 +8,7 @@
 #include "RobotManagerDataObject.hpp"
 #include "DataManager.hpp"
 #include "UpdateRobotDataThread.hpp"
-
+#include "TaskThread.hpp"
 /*!
  * \brief Główne okno aplikacji dyspozytora
  */
@@ -53,18 +53,21 @@ private:
    * \brief Metoda inicjująca okno
    */
   void init();
-  /*!
-   * \brief Timer wywołujący zdarzenie aktualizacji danych z ROS
-   */
-  QTimer* m_rosTimer;
 
+  /*!
+   * \ brief Wskaźnik na timer, który odpowiedzialny jest za odliczanie czasu do obsługi zadań
+   */
   QTimer* m_taskManagerTimer;
 
-  //ros::NodeHandle nh;
-
+  /*!
+   * \brief Wątek odpowiedzialny za aktualizację danych robotów
+   */
   UpdateRobotDataThread* m_rosUpdateThread;
 
-  QMap<unsigned, QThread* > m_taskThreadsMap;
+  /*!
+   * \brief Kontener asocjacyjny przechowujący wątki wykonywanych zadań
+   */
+  QMap<unsigned, TaskThread* > m_taskThreadsMap;
 
 private slots:
 
@@ -78,8 +81,15 @@ private slots:
    */
   void onUpdateROS();
 
+  /*!
+   * \brief Slot obsługujący przydział zadań
+   */
   void runNextTasks();
 
+  /*!
+   * \brief Slot obsługujący wykonane zadanie
+   * \param taskId - identyfikator ukończonego zadania
+   */
   void onTaskCompleted(unsigned taskId);
 };
 

@@ -47,7 +47,7 @@ public :
    * Wstepnie deklaruje wartosci zapisane do parametrow struktury Robot
    * 0 dla zmiennych typu double i int oraz TRUE dla zmiennej typu bool
    */
-  Robot() { wsp_x = wsp_y = 0; id = 0; czy_wolny = 1;garazId = 0;}
+  Robot() { wsp_x = wsp_y = 0; id = 0; czy_wolny = 1; garazId = 0;}
 
   //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
   //Funkcje dostepu do zmiennych struktury Robot

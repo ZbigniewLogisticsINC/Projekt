@@ -106,7 +106,7 @@ public :
 /*! 
  * \brief zmienia wartosc pola wsp_x struktury Magazyn.
  *
- * \param      x  -  staly wskaznik typu double do argumentu wsp_x
+ * \param      x  -  stala referencja typu double do argumentu wsp_x
  *
  */
   void ZmienWspX(const double& x)
@@ -115,7 +115,7 @@ public :
 /*! 
  * \brief zmienia wartosc pola wsp_y struktury Magazyn.
  *
- * \param      y  -  staly wskaznik typu double do argumentu wsp_y
+ * \param      y  -  stala referencja  typu double do argumentu wsp_y
  *
  */
   void ZmienWspY(const double& y)
@@ -125,7 +125,7 @@ public :
  * \brief zmienia wartosc pola wspwej_x struktury Magazyn.
  *
 
- * \param      x  -  staly wskaznik typu double do argumentu wspwej_x
+ * \param      x  -  stała referencja typu double do argumentu wspwej_x
  *
  */
   void ZmienWspWejX(const double& x)
@@ -134,7 +134,7 @@ public :
 /*! 
  * \brief zmienia wartosc pola wspwej_y struktury Magazyn.
  *
- * \param      y  -  staly wskaznik typu double do argumentu wspwej_y
+ * \param      y  -  stała referencja typu double do argumentu wspwej_y
  *
 
  */
@@ -144,7 +144,7 @@ public :
 /*! 
  * \brief zmienia wartosc pola czy_wolny struktury Magazyn.
  *
- * \param      wsp  -  staly wskaznik typu bool do argumentu czy_wolny danego magazynu
+ * \param      wsp  -  stała referencja typu bool do argumentu czy_wolny danego magazynu
  *
  */
   void ZmienCzyWolny(const bool& wsp)

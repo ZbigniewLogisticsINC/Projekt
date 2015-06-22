@@ -64,7 +64,6 @@ double MapWidget::getAngleInDegrees(double x1, double y1, double x2,
         angle = 90 + atan(h / a) * 180 / 3.14159265;
     }
   }
-  std::cout << angle << std::endl;
   return angle;
 }
 

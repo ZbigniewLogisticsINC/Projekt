@@ -51,7 +51,8 @@ void LogisticSystemMainWindow::init()
   connect(m_ui.actionAbout, SIGNAL(triggered()), this,
       SLOT(showAboutWndDialog()));
   connect(m_taskManagerTimer, SIGNAL(timeout()), this, SLOT(runNextTasks()));
-  m_taskManagerTimer->start(100);
+  m_taskManagerTimer->start(1000);
+  m_rosUpdateThread->waitTimeMs = 200;
 }
 
 void LogisticSystemMainWindow::closeEvent(QCloseEvent* closeEvent)
@@ -77,12 +78,33 @@ void LogisticSystemMainWindow::onUpdateROS()
 
 void LogisticSystemMainWindow::runNextTasks()
 {
+  std::vector<unsigned> idTasksVec;
+  m_managerData->runNextTasks(idTasksVec);
+
+  for (unsigned i = 0; i < idTasksVec.size(); i++)
+  {
+    TaskThread* taskThread = new TaskThread(this);
+    taskThread->taskId = idTasksVec[i];
+    Zadanie* task = m_managerData->findTaskId(taskThread->taskId);
+    Magazyn* storeStart = m_managerData->findStoreId(task->WezStartMagazynId()),
+        *storeEnd = m_managerData->findStoreId(task->WezCelMagazynId());
+    taskThread->xStart = storeStart->WezWspX();
+    taskThread->yStart = storeStart->WezWspY();
+    taskThread->xEnd = storeEnd->WezWspX();
+    taskThread->yEnd = storeEnd->WezWspY();
+    m_taskThreadsMap.insert(taskThread->taskId, taskThread);
+
+    connect(taskThread, SIGNAL(taskFinished(unsigned)), this,
+        SLOT(onTaskCompleted(unsigned)));
+    taskThread->start();
+    //taskThread->robotName =
+  }
 
 }
 
 void LogisticSystemMainWindow::onTaskCompleted(unsigned taskId)
 {
-  QMap<unsigned, QThread*>::iterator it = m_taskThreadsMap.find(taskId);
+  QMap<unsigned, TaskThread*>::iterator it = m_taskThreadsMap.find(taskId);
 
   if (it != m_taskThreadsMap.end())
   {
